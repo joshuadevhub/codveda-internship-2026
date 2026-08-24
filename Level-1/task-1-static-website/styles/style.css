@@ -104,7 +104,6 @@ body{
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   min-height: 100vh;
   position: relative;
 }
@@ -151,6 +150,38 @@ body{
 }
 .hero-content a:hover{
   background-color: var(--primary-color);
+}
+
+.why-choose{
+  padding: 1rem;
+}
+.why-choose h2{
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1.2rem;
+}
+.why-choose .features{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+.features .feature-card{
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--light-bg);
+  box-shadow: 1px 1px 5px rgba(11, 31, 58, 0.15);
+}
+.feature-card img{
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+.feature-card h3{
+  text-align: center;
+  color: var(--primary-color);
+}
+.feature-card p{
+  text-align: center;
+  font-size: 0.9rem;
 }
 
 @media (min-width: 768px){
@@ -208,5 +239,11 @@ body{
   }
   .cta a{
     width: 48%;
+  }
+  .why-choose{
+    padding: 2rem;
+  }
+  .why-choose .features{
+    grid-template-columns: repeat(3, 1fr);
   }
 }
