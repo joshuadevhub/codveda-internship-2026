@@ -1,0 +1,212 @@
+:root {
+  --primary-color: #0b1f3a;
+  --secondary-color: #ffffff;
+  --accent-color: #d4af37;
+  --light-bg: #f5f7fa;
+  --text-color: #1f2937;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.header{
+  /* background-color: var(--primary-color); */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+}
+
+.header .logo > a{
+  text-decoration: none;
+  color: var(--accent-color);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.header .menu-toggle, .nav .close-toggle{
+  background-color: transparent;
+  border: none;
+}
+.overlay{
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0.85);
+  opacity: 0;
+  transition: all 0.8s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.overlay.isOpen{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.header .nav{
+  position: fixed;
+  background-color: var(--primary-color);
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 75%;
+  transform: translateX(100%);
+  transition: transform 0.55s ease-in-out;
+  z-index: 1000;
+}
+.header .nav.isOpen{
+  transform: translate(0);
+}
+.nav .close-toggle{
+  display: block;
+  margin-left: auto;
+  margin-top: 7%;
+  padding-right: 1rem;
+}
+.nav ul{
+  margin-top: 1.2rem;
+  padding: 1rem;
+}
+.nav ul li{
+  padding: 0.5rem 3rem 0.5rem 5rem;
+  list-style: none;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.nav ul li a{
+  text-decoration: none;
+  color: var(--accent-color);
+}
+.nav ul li.active{
+  background-color: var(--secondary-color);
+}
+.nav ul li.active a{
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.hero{
+  background-image: url("../images/school-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+}
+.hero::before{
+  content: "";
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0.6);
+  position: absolute;
+}
+.hero .hero-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+  padding: 2rem;
+  width: 100%;
+  gap: 1.5rem;
+  min-height: 100vh;
+}
+.hero-content h1, .hero-content p{
+  color: var(--secondary-color);
+  margin: 0;
+}
+
+.cta{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.hero-content a{
+  text-decoration: none;
+  background-color: var(--accent-color);
+  margin: 0.6rem auto;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  text-align: center;
+  color: var(--secondary-color);
+  transition: background-color 1s ease;
+  border: none;
+}
+.hero-content a:hover{
+  background-color: var(--primary-color);
+}
+
+@media (min-width: 768px){
+  .logo{
+    margin-left: 1rem;
+  }
+  .menu-toggle, .nav .close-toggle{
+    display: none;
+  }
+  .header .nav{
+    transform: none;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    display: flex;
+    position: static;
+    align-items: center;
+    justify-content: start;
+    margin: 0;
+    padding: 0;
+  }
+  .nav ul{
+    display: flex;
+    padding:0;
+    margin: 0;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .nav ul li{
+    padding: 0;
+    margin: 0;
+    margin-left: 2rem;
+    font-size: 0.9rem;
+  }
+  .nav ul li:last-child{
+    margin-right: 1rem;
+  }
+
+  .nav ul li.active{
+    background-color: transparent
+  }
+  .nav ul li.active a{
+    color: var(--accent-color);
+  }
+  .hero{
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  }
+  .cta{
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+  }
+  .cta a{
+    width: 48%;
+  }
+}
