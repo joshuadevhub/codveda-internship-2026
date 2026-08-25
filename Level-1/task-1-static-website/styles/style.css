@@ -154,6 +154,7 @@ body{
 
 .why-choose{
   padding: 1rem;
+  margin-bottom: 1.5rem;
 }
 .why-choose h2{
   text-align: center;
@@ -182,6 +183,41 @@ body{
 .feature-card p{
   text-align: center;
   font-size: 0.9rem;
+}
+.about-school{
+  padding-block: 2rem;
+}
+.about-school .about-image{
+  width: 100%;
+  height: auto;
+}
+.about-image img{
+  width: 100%;
+  display: block;
+}
+.about-content{
+  padding: 1rem;
+}
+.about-content h2{
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1.2rem;
+}
+.about-content p{
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.about-content a{
+  text-decoration: none;
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  margin: 0.8rem 0;
+  border: none;
 }
 
 @media (min-width: 768px){
@@ -245,5 +281,23 @@ body{
   }
   .why-choose .features{
     grid-template-columns: repeat(3, 1fr);
+  }
+  .about-school {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .about-school .about-image {
+    height: 290px;
+  }
+
+  .about-school .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
   }
 }
