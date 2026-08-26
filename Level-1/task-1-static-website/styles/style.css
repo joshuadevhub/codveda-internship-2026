@@ -150,8 +150,9 @@ body {
   transition: background-color 1s ease;
   border: none;
 }
-.hero-content a:hover, .about-content a:hover,
-.academics > a:hover  {
+.hero-content a:hover,
+.about-content a:hover,
+.academics > a:hover {
   background-color: var(--primary-color);
 }
 
@@ -233,21 +234,21 @@ body {
   transition: background-color 1s ease;
 }
 
-.admission-cta{
+.admission-cta {
   background-color: var(--primary-color);
   margin-top: 2rem;
   text-align: center;
   padding: 3rem 1rem;
 }
-.admission-cta h2{
+.admission-cta h2 {
   color: var(--secondary-color);
 }
-.admission-cta p{
+.admission-cta p {
   color: var(--secondary-color);
   font-size: 0.9rem;
   margin: 2rem 0;
 }
-.admission-cta a{
+.admission-cta a {
   display: block;
   width: 100%;
   max-width: 300px;
@@ -308,6 +309,176 @@ footer {
   font-size: 0.8rem;
 }
 
+/* =========================
+   ABOUT PAGE
+========================= */
+
+.page-hero {
+  min-height: 60vh;
+  background-image: url("../images/school-building.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: 6rem 1rem 2rem;
+  margin-top: 2rem;
+}
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0.6);
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+  color: var(--secondary-color);
+  max-width: 700px;
+}
+
+.page-hero-content h1 {
+  margin-bottom: 1rem;
+}
+
+.page-hero-content p {
+  font-size: 0.95rem;
+}
+
+/* =========================
+   OUR STORY
+========================= */
+
+.our-story {
+  padding: 2rem 1rem;
+}
+
+.story-image {
+  width: 100%;
+  height: 280px;
+}
+
+.story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.story-content {
+  padding-top: 1.5rem;
+}
+
+.story-content h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.story-content p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   MISSION & VISION
+========================= */
+
+.mission-vision {
+  background-color: var(--light-bg);
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.mission-vision > h2 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.mission-vision-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.info-card {
+  background-color: var(--secondary-color);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 5px rgba(11, 31, 58, 0.15);
+}
+
+.info-card img {
+  width: 45px;
+  height: 45px;
+  margin-bottom: 1rem;
+}
+
+.info-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.7rem;
+}
+
+.info-card p {
+  font-size: 0.9rem;
+}
+
+/* =========================
+   CORE VALUES
+========================= */
+
+.core-values {
+  padding: 2rem 1rem;
+}
+
+.section-intro {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-intro h2 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.section-intro p {
+  font-size: 0.9rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.value-card {
+  background-color: var(--light-bg);
+  padding: 1.5rem 1rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.value-card img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.8rem;
+}
+
+.value-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.value-card p {
+  font-size: 0.9rem;
+}
+
 @media (min-width: 768px) {
   .header {
     background-color: rgba(11, 31, 58, 0.9);
@@ -349,13 +520,12 @@ footer {
   .nav ul li:last-child {
     margin-right: 1rem;
   }
-  .nav ul li a{
+  .nav ul li a {
     transition: color 0.4s ease;
   }
-  .nav ul li a:hover{
+  .nav ul li a:hover {
     color: var(--secondary-color);
   }
-
 
   .nav ul li.active {
     background-color: transparent;
@@ -364,7 +534,7 @@ footer {
     color: var(--secondary-color);
     transition: color 0.4s ease;
   }
-  .nav ul li.active a:hover{
+  .nav ul li.active a:hover {
     color: var(--accent-color);
   }
   .hero {
@@ -421,5 +591,51 @@ footer {
   .footer-bottom {
     max-width: 1200px;
     margin: 2rem auto 0;
+  }
+
+  /* About Page Desktop */
+  .page-hero {
+    margin-top: 0;
+    padding: 6rem 2rem 2rem;
+  }
+
+  .page-hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .our-story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    padding: 4rem 2rem;
+  }
+
+  .story-image {
+    height: 350px;
+  }
+
+  .story-content {
+    padding-top: 0;
+  }
+
+  .mission-vision {
+    padding: 4rem 2rem;
+  }
+
+  .mission-vision-cards {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .core-values {
+    padding: 4rem 2rem;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
   }
 }
