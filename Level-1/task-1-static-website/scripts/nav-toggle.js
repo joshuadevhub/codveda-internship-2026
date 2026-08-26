@@ -17,4 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     menuToggle.setAttribute("aria-label", "Open navigation menu");
     overlay.classList.remove("isOpen");
   })
+
+  overlay.addEventListener("click", () => {
+    overlay.classList.remove("isOpen");
+  })
 });
