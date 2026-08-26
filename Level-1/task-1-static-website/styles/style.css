@@ -150,7 +150,8 @@ body {
   transition: background-color 1s ease;
   border: none;
 }
-.hero-content a:hover {
+.hero-content a:hover, .about-content a:hover,
+.academics > a:hover  {
   background-color: var(--primary-color);
 }
 
@@ -229,6 +230,82 @@ body {
   border-radius: 1rem;
   margin: 1.5rem 0 0 0;
   border: none;
+  transition: background-color 1s ease;
+}
+
+.admission-cta{
+  background-color: var(--primary-color);
+  margin-top: 2rem;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+.admission-cta h2{
+  color: var(--secondary-color);
+}
+.admission-cta p{
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  margin: 2rem 0;
+}
+.admission-cta a{
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 0.5rem;
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  text-decoration: none;
+  border-radius: 1rem;
+}
+footer {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 2rem 1rem 1rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.footer-school h3,
+.footer-links h3,
+.footer-contact h3 {
+  color: var(--accent-color);
+  margin-bottom: 0.8rem;
+}
+
+.footer-school p,
+.footer-contact p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-color);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 2rem;
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
 }
 
 @media (min-width: 768px) {
@@ -272,11 +349,22 @@ body {
   .nav ul li:last-child {
     margin-right: 1rem;
   }
+  .nav ul li a{
+    transition: color 0.4s ease;
+  }
+  .nav ul li a:hover{
+    color: var(--secondary-color);
+  }
+
 
   .nav ul li.active {
     background-color: transparent;
   }
   .nav ul li.active a {
+    color: var(--secondary-color);
+    transition: color 0.4s ease;
+  }
+  .nav ul li.active a:hover{
     color: var(--accent-color);
   }
   .hero {
@@ -318,5 +406,20 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 1rem;
+  }
+  footer {
+    padding: 3rem 2rem 1rem;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0;
   }
 }
