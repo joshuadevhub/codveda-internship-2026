@@ -814,6 +814,154 @@ footer {
   font-size: 0.9rem;
 }
 
+/* =========================
+   CONTACT PAGE
+========================= */
+
+.contact-hero {
+  min-height: 60vh;
+  background-image: url("../images/school-building.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.contact-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0.65);
+}
+
+.contact-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 750px;
+  color: var(--secondary-color);
+}
+
+.contact-hero-content h1 {
+  margin-bottom: 1rem;
+}
+
+.contact-hero-content p {
+  font-size: 0.95rem;
+}
+
+.contact-section {
+  padding: 2rem 1rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.contact-card {
+  padding: 1.5rem 1rem;
+  background-color: var(--light-bg);
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 1px 1px 5px rgba(11, 31, 58, 0.15);
+}
+
+.contact-card img {
+  width: 45px;
+  height: 45px;
+  margin-bottom: 0.8rem;
+}
+
+.contact-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.contact-card p {
+  font-size: 0.9rem;
+}
+
+.contact-form-section {
+  background-color: var(--light-bg);
+  padding: 2rem 1rem;
+}
+
+.contact-form-intro {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form-intro h2 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-intro p {
+  font-size: 0.9rem;
+}
+
+.contact-form {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background-color: var(--secondary-color);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: 2px solid var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 1rem;
+
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+
+  font-size: 1rem;
+  cursor: pointer;
+
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: var(--primary-color);
+}
+
 
 @media (min-width: 768px) {
   .header {
@@ -1088,5 +1236,33 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     max-width: 1100px;
     margin: 0 auto;
+  }
+
+  /* Contact Page Desktop */
+  .contact-hero {
+    min-height: 60vh;
+    padding: 2rem;
+  }
+
+  .contact-hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .contact-hero-content p {
+    font-size: 1rem;
+  }
+
+  .contact-section {
+    padding: 4rem 2rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .contact-form-section {
+    padding: 4rem 2rem;
   }
 }
