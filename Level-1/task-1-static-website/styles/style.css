@@ -107,6 +107,9 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .hero::before {
   content: "";
@@ -118,30 +121,34 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   text-align: center;
-  z-index: 1;
-  position: relative;
-  padding: 2rem;
+  padding: 2rem 1rem;
   width: 100%;
-  gap: 1.5rem;
-  min-height: 100vh;
+  max-width: 900px;
+  position: relative;
+  flex-direction: column;
+  z-index: 1;
 }
 .hero-content h1,
 .hero-content p {
   color: var(--secondary-color);
-  margin: 0;
+  margin-bottom: 1rem;
+}
+.hero-content p{
+  font-size: 0.9rem;
+  max-width: 650px;
 }
 
 .cta {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 700px;
+  gap: 0.8rem;
 }
-.hero-content a {
+.cta a {
   text-decoration: none;
   background-color: var(--accent-color);
-  margin: 0.6rem auto;
   width: 100%;
   padding: 0.5rem;
   border-radius: 1rem;
@@ -150,7 +157,7 @@ body {
   transition: background-color 1s ease;
   border: none;
 }
-.hero-content a:hover,
+.cta a:hover,
 .about-content a:hover,
 .academics > a:hover {
   background-color: var(--primary-color);
@@ -320,14 +327,11 @@ footer {
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-
-  padding: 6rem 1rem 2rem;
-  margin-top: 2rem;
+  padding: 7rem 1rem 2rem;
 }
 
 .page-hero::before {
@@ -351,10 +355,6 @@ footer {
 .page-hero-content p {
   font-size: 0.95rem;
 }
-
-/* =========================
-   OUR STORY
-========================= */
 
 .our-story {
   padding: 2rem 1rem;
@@ -386,9 +386,6 @@ footer {
   margin-bottom: 1rem;
 }
 
-/* =========================
-   MISSION & VISION
-========================= */
 
 .mission-vision {
   background-color: var(--light-bg);
@@ -428,10 +425,6 @@ footer {
 .info-card p {
   font-size: 0.9rem;
 }
-
-/* =========================
-   CORE VALUES
-========================= */
 
 .core-values {
   padding: 2rem 1rem;
@@ -476,6 +469,209 @@ footer {
 }
 
 .value-card p {
+  font-size: 0.9rem;
+}
+
+/* =========================
+   ADMISSION PAGE
+========================= */
+
+.admission-hero {
+  min-height: 60vh;
+  background-image: url("../images/school-building.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 6rem 1rem 2rem;
+}
+
+.admission-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0.65);
+}
+
+.admission-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 750px;
+  color: var(--secondary-color);
+}
+
+.admission-hero-content h1 {
+  margin-bottom: 1rem;
+}
+
+.admission-hero-content p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admission-hero-content span {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.admission-hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.admission-hero-actions a {
+  text-decoration: none;
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  padding: 0.6rem 1rem;
+  border-radius: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.admission-hero-actions a:hover {
+  background-color: var(--primary-color);
+}
+
+
+/* =========================
+   ADMISSION INTRO
+========================= */
+
+.admission-intro {
+  padding: 2rem 1rem;
+}
+
+.admission-intro > div {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.admission-intro h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.admission-intro p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+
+/* =========================
+   REQUIREMENTS
+========================= */
+
+.requirements {
+  background-color: var(--light-bg);
+  padding: 2rem 1rem;
+}
+
+.requirements-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.requirement-card {
+  background-color: var(--secondary-color);
+  padding: 1.5rem 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 1px 1px 5px rgba(11, 31, 58, 0.15);
+}
+
+.requirement-card img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.8rem;
+}
+
+.requirement-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.requirement-card p {
+  font-size: 0.9rem;
+}
+
+
+/* =========================
+   APPLICATION PROCESS
+========================= */
+
+.application-process {
+  padding: 2rem 1rem;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.process-card {
+  padding: 1.5rem;
+  border-left: 4px solid var(--accent-color);
+  background-color: var(--light-bg);
+  border-radius: 0 1rem 1rem 0;
+}
+
+.process-card span {
+  display: inline-block;
+  color: var(--accent-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.process-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.process-card p {
+  font-size: 0.9rem;
+}
+
+
+/* =========================
+   AVAILABLE LEVELS
+========================= */
+
+.available-levels {
+  background-color: var(--light-bg);
+  padding: 2rem 1rem;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.level-card {
+  background-color: var(--secondary-color);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 1px 1px 5px rgba(11, 31, 58, 0.15);
+}
+
+.level-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.level-card p {
   font-size: 0.9rem;
 }
 
@@ -538,19 +734,25 @@ footer {
     color: var(--accent-color);
   }
   .hero {
-    background-size: cover;
-    background-position: center;
     height: 100vh;
   }
+  .hero .hero-content{
+    padding: 2rem;
+  }
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
   .cta {
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    width: 50%;
+    gap: 1rem;
   }
-  .cta a {
-    width: 48%;
-  }
+
   .why-choose,
   .academics {
     padding: 2rem;
@@ -595,8 +797,8 @@ footer {
 
   /* About Page Desktop */
   .page-hero {
-    margin-top: 0;
-    padding: 6rem 2rem 2rem;
+    min-height: 60vh;
+    padding: 2rem ;
   }
 
   .page-hero-content h1 {
@@ -634,6 +836,60 @@ footer {
   }
 
   .values-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Admission Page */
+  .admission-hero {
+    min-height: 60vh;
+    padding: 6rem 2rem 2rem;
+  }
+
+  .admission-hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .admission-hero-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .admission-hero-actions a {
+    min-width: 180px;
+  }
+
+  .admission-intro {
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .requirements {
+    padding: 4rem 2rem;
+  }
+
+  .requirements-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .application-process {
+    padding: 4rem 2rem;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .available-levels {
+    padding: 4rem 2rem;
+  }
+
+  .levels-grid {
     grid-template-columns: repeat(4, 1fr);
     max-width: 1200px;
     margin: 0 auto;
