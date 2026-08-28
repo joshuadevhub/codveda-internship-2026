@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration Portal</title>
+
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="./scripts/main.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="#">StudentHub</a>
+      </div>
+
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+        aria-controls="navbar"
+      >
+        <img
+          src="../task-1-static-website/images/icons/menu-hambugger.svg"
+          alt=""
+        />
+      </button>
+
+      <nav class="nav" id="navbar">
+        <button class="close-icon" id="close-icon">
+          <img
+            src="../task-1-static-website/images/icons/close-icon.svg"
+            alt=""
+          />
+        </button>
+        <div class="menu-content">
+          <ul>
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Students</a></li>
+            <li><a href="#">Register</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-text">
+            <span class="hero-label">STUDENT PORTAL</span>
+
+            <h1>Student Registration Portal</h1>
+
+            <p>
+              Manage student information and registration through a simple and
+              interactive portal.
+            </p>
+
+            <a href="#registration" class="hero-button"> Register a Student </a>
+          </div>
+
+          <div class="hero-visual">
+            <div class="student-card">
+              <div class="student-card-header">
+                <span>Student Profile</span>
+                <span class="status">Active</span>
+              </div>
+
+              <div class="student-info">
+                <div class="student-avatar">DJ</div>
+
+                <div>
+                  <h3>David Johnson</h3>
+                  <p>Senior Secondary 2</p>
+                </div>
+              </div>
+
+              <div class="student-details">
+                <div>
+                  <span>Age</span>
+                  <strong>16</strong>
+                </div>
+
+                <div>
+                  <span>Class</span>
+                  <strong>SS2</strong>
+                </div>
+
+                <div>
+                  <span>Status</span>
+                  <strong>Registered</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer></footer>
+  </body>
+</html>
