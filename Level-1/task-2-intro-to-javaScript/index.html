@@ -37,7 +37,7 @@
         <div class="menu-content">
           <ul>
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Students</a></li>
+            <li><a href="#">Explore Class</a></li>
             <li><a href="#">Register</a></li>
           </ul>
         </div>
@@ -94,6 +94,96 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="explore">
+        <div class="section-heading">
+          <h2>Explore Classes</h2>
+          <p>Browse Students by their class level</p>
+        </div>
+
+        <div class="explore-input">
+          <select name="class" id="class-select" class="selected-class">
+            <option value="" selected>Select a class</option>
+            <option value="ss1">SS 1</option>
+            <option value="ss2">SS 2</option>
+            <option value="ss3">SS 3</option>
+          </select>
+        </div>
+
+        <div class="dropdown" id="class-info">
+          <h3 id="class-heading"></h3>
+          <div>
+            <p>Class Code: <span id="class-code"></span></p>
+            <p>Students: <span id="students"></span></p>
+            <p>Class Teacher: <span id="class-teacher"></span></p>
+          </div>
+          <a href="#">View Students</a>
+        </div>
+      </section>
+
+      <section class="registration">
+        <div class="section-heading">
+          <h2>Register a Student</h2>
+          <p>Add a new student to the StudentHub portal</p>
+        </div>
+
+        <div class="form-container">
+          <form action="#" method="get" id="registration-form">
+            <div class="form-content">
+              <label for="first-name">First Name</label>
+              <input
+                type="text"
+                placeholder="Enter your first name"
+                id="first-name"
+              />
+              <p class="error-message"></p>
+            </div>
+
+            <div class="form-content">
+              <label for="last-name">Last Name</label>
+              <input
+                type="text"
+                placeholder="Enter your last name"
+                id="last-name"
+              />
+              <p class="error-message"></p>
+            </div>
+
+            <div class="form-content">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                placeholder="someone@example.com"
+                id="email"
+              />
+              <p class="error-message"></p>
+            </div>
+
+            <div class="form-content">
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                placeholder="Enter your phone number"
+                id="phone"
+              />
+              <p class="error-message"></p>
+            </div>
+
+            <div class="explore-input form-content">
+              <label for="class">Class</label>
+              <select name="class" class="selected-class" id="select">
+                <option value="" selected>Select a class</option>
+                <option value="ss1">SS 1</option>
+                <option value="ss2">SS 2</option>
+                <option value="ss3">SS 3</option>
+              </select>
+              <p class="error-message"></p>
+            </div>
+
+            <button type="submit">Register</button>
+          </form>
         </div>
       </section>
     </main>

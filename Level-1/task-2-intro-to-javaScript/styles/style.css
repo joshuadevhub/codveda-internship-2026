@@ -10,16 +10,16 @@
   --error-color: #dc2626;
   --border-color: #e2e8f0;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+body {
   background-color: var(--background-color);
   font-family: Arial, Helvetica, sans-serif;
 }
-.header{
+.header {
   background-color: var(--secondary-color);
   display: flex;
   align-items: center;
@@ -29,17 +29,18 @@ body{
   width: 100%;
   z-index: 2;
 }
-.header .logo a{
+.header .logo a {
   text-decoration: none;
   color: var(--primary-color);
   font-size: 1.3rem;
   font-weight: bold;
 }
-.header .menu-toggle, .nav .close-icon{
+.header .menu-toggle,
+.nav .close-icon {
   background-color: transparent;
   border: none;
 }
-.header .nav{
+.header .nav {
   position: fixed;
   background-color: var(--secondary-color);
   width: 100%;
@@ -50,16 +51,16 @@ body{
   transition: transform 1s ease;
   z-index: 1000;
 }
-.header .nav.isOpen{
+.header .nav.isOpen {
   transform: translateX(0);
 }
-.nav .close-icon{
+.nav .close-icon {
   display: block;
   margin: auto;
   margin-right: 1rem;
   margin-top: 1.2rem;
 }
-.nav .menu-content{
+.nav .menu-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,22 +68,22 @@ body{
   min-height: 50vh;
   margin-top: 1rem;
 }
-.menu-content ul{
+.menu-content ul {
   list-style: none;
 }
-.menu-content ul li{
+.menu-content ul li {
   padding: 2rem;
 }
-.menu-content ul li a{
+.menu-content ul li a {
   text-decoration: none;
   color: var(--surface-color);
   font-size: 1.2rem;
   transition: color 0.4s ease;
 }
-.menu-content ul li a:hover{
+.menu-content ul li a:hover {
   color: var(--primary-color);
 }
-.menu-content ul li.active a{
+.menu-content ul li.active a {
   color: var(--primary-color);
 }
 
@@ -98,7 +99,7 @@ body{
   position: relative;
   isolation: isolate;
 }
-.hero::before{
+.hero::before {
   content: "";
   inset: 0;
   background-color: rgba(0, 0, 0, 0.55);
@@ -246,14 +247,132 @@ body{
   font-size: 0.85rem;
 }
 
-@media (min-width: 768px){
-  .header .menu-toggle, .nav .close-icon{
+.explore {
+  padding: 1rem;
+  background-color: var(--surface-color);
+}
+.section-heading {
+  text-align: center;
+  margin: 2rem 0 1.5rem;
+}
+.section-heading h2 {
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+.section-heading p {
+  color: var(--muted-text);
+  font-size: 0.9rem;
+}
+.explore-input {
+  margin-bottom: 2rem;
+}
+.explore-input .selected-class,
+.form-content input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  background-color: var(--surface-color);
+  outline: none;
+  color: var(--text-color);
+}
+.explore-input .selected-class:focus,
+.form-content input:focus {
+  border-color: var(--primary-color);
+}
+
+.dropdown {
+  background-color: var(--background-color);
+  padding: 1.5rem 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  box-shadow: 1px 8px 5px rgba(15, 23, 42, 0.1);
+  display: none;
+}
+.dropdown.isActive {
+  display: block;
+}
+.dropdown h3 {
+  color: var(--secondary-color);
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+.dropdown > div {
+  margin-bottom: 1.2rem;
+  padding: 0.3rem;
+}
+.dropdown > div p {
+  color: var(--text-color);
+  padding-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+.dropdown a,
+form button {
+  display: block;
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--surface-color);
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 0.7rem;
+  border: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+.dropdown a:hover,
+form button:hover {
+  background-color: var(--primary-dark);
+}
+
+.form-container {
+  background-color: var(--surface-color);
+  margin: 2rem auto;
+  width: 90%;
+  border-radius: 1rem;
+}
+.form-container form {
+  padding: 2rem 1rem;
+  background-color: var(--border-color);
+  border-radius: 0.8rem;
+}
+.form-content {
+  margin-bottom: 2rem;
+}
+.form-content.error input,
+.form-content.error select {
+  border-color: var(--error-color);
+}
+.form-content.success input,
+.form-content.success select {
+  border-color: var(--success-color);
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: var(--secondary-color);
+  font-size: 0.95rem;
+  margin: 0 0 0.3rem 0.3rem;
+}
+.error-message {
+  color: var(--error-color);
+  font-size: 0.75rem;
+  margin: 0.3rem 0 0 0.5rem;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .header .menu-toggle,
+  .nav .close-icon {
     display: none;
   }
-  .header{
+  .header {
     padding: 1rem 2rem;
   }
-  .header .nav{
+  .header .nav {
     transform: none;
     width: auto;
     height: auto;
@@ -264,13 +383,13 @@ body{
     margin: 0;
     padding: 0;
   }
-  .nav .menu-content{
+  .nav .menu-content {
     margin: 0;
     min-height: 0;
     display: flex;
     align-items: center;
   }
-  .menu-content ul{
+  .menu-content ul {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -278,11 +397,11 @@ body{
     padding: 0;
     gap: 2rem;
   }
-  .menu-content ul li{
+  .menu-content ul li {
     padding: 0;
     margin: 0;
   }
-  .menu-content ul li a{
+  .menu-content ul li a {
     font-size: 0.9rem;
   }
 
