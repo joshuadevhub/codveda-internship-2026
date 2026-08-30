@@ -545,4 +545,49 @@ label {
   .hero-visual {
     justify-content: flex-end;
   }
+  .explore{
+    padding: 3rem 2rem;
+    margin: 0 auto 2rem;
+  }
+  .explore-input {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+  .dropdown {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .registration {
+    padding: 3rem 2rem;
+  }
+  .form-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 2rem auto;
+  }
+
+  .form-container form {
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;
+  }
+  .form-container form .form-content:nth-child(5),
+  .form-container form button {
+    grid-column: 1 / -1;
+  }
+
+  .modal-content {
+    max-width: 700px;
+    padding: 2rem;
+  }
+
+  .student-list {
+    grid-template-columns: 1fr 1fr;
+  }
+  .success-modal-content {
+    width: 500px;
+  }
 }
