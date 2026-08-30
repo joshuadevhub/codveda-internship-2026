@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const classCode = document.getElementById("class-code");
   const totalStudents = document.getElementById("students");
   const classTeacher = document.getElementById("class-teacher");
+  const viewStudents = document.getElementById("view-students");
 
   const form = document.getElementById("registration-form");
   const firstName = document.getElementById("first-name");
@@ -16,8 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const phone = document.getElementById("phone");
   const select = document.getElementById("select");
 
+  const modal = document.getElementById("student-modal");
+  const modalTitle = document.getElementById("modal-title");
+  const studentList = document.getElementById("student-list");
+
   const nameHasNumber = /[0-9]/;
-  const phoneRegex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,3}[-\s\.]?[0-9]{3,}[-\s\.]?[0-9]{3,}$/;
+  const phoneRegex =
+    /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,3}[-\s\.]?[0-9]{3,}[-\s\.]?[0-9]{3,}$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const toggleMenu = () => {
@@ -36,24 +42,23 @@ document.addEventListener("DOMContentLoaded", () => {
   closeToggle.addEventListener("click", closeMenu);
 
   // Explore Class Section
+  const students = [];
+
   const classes = {
     ss1: {
       name: "Senior Secondary School 1",
       classCode: "SS1",
-      students: 34,
       classTeacher: "Mr James Precious",
     },
 
     ss2: {
       name: "Senior Secondary School 2",
       classCode: "SS2",
-      students: 29,
       classTeacher: "Mr Joshua Damilare",
     },
     ss3: {
       name: "Senior Secondary School 3",
       classCode: "SS3",
-      students: 32,
       classTeacher: "Mrs Deborah Goodness",
     },
   };
@@ -66,20 +71,46 @@ document.addEventListener("DOMContentLoaded", () => {
       const selectedValue = classes[selectedClass.value];
       classHeading.textContent = selectedValue.name;
       classCode.textContent = selectedValue.classCode;
-      totalStudents.textContent = selectedValue.students;
+
+      const total = students.filter(
+        (s) => s.class === selectedClass.value,
+      ).length;
+      totalStudents.textContent = total;
       classTeacher.textContent = selectedValue.classTeacher;
 
       dropdown.classList.add("isActive");
     }
   });
 
-
   // Registration Section
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     registerStudent();
   });
+
+  function registerStudent() {
+    const isValid =
+      validateFirstName() &&
+      validateLastName() &&
+      validatePhone() &&
+      validateEmail() &&
+      validateSelect();
+
+    if (isValid) {
+      const student = {
+        id: generateStudentId(),
+        firstName: validateFirstName(),
+        lastName: validateLastName(),
+        email: validateEmail(),
+        phoneNumber: validatePhone(),
+        class: validateSelect(),
+      };
+      students.push(student);
+      console.log(students);
+    }
+  }
 
   select.addEventListener("change", () => {
     if (select.value == "") {
@@ -87,50 +118,60 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       setSuccess(select);
     }
-  })
+  });
 
-  function registerStudent() {
+  function validateFirstName() {
     let isFirstNameValid = false;
-    let isLastNameValid = false;
-    let isEmailValid = false;
-    let isPhoneNumberValid = false
-    let isSelectValid = false;
-
     const firstNameValue = firstName.value.trim();
-    const lastNameValue = lastName.value.trim();
-    const emailValue = email.value.trim();
-    const phoneValue = phone.value.trim();
 
     if (firstNameValue == "") {
-      setError(firstName, "First name is required");
+      setError(firstName, `First name is required`);
     } else if (nameHasNumber.test(firstNameValue)) {
-      setError(firstName, "First name cannot contain numbers");
+      setError(firstName, `First name cannot contain numbers`);
     } else if (firstNameValue.length <= 2) {
-      setError(firstName, "First Name must be at least 3 characters");
+      setError(firstName, `First name must be at least 3 characters`);
     } else {
       setSuccess(firstName);
       isFirstNameValid = true;
     }
+    return isFirstNameValid && firstNameValue;
+  }
+
+  function validateLastName() {
+    let isLastNameValid = false;
+    const lastNameValue = lastName.value.trim();
 
     if (lastNameValue == "") {
-      setError(lastName, "Last name is required");
+      setError(lastName, `Last name is required`);
     } else if (nameHasNumber.test(lastNameValue)) {
-      setError(lastName, "Last name cannot contain numbers");
+      setError(lastName, `Last name cannot contain numbers`);
     } else if (lastNameValue.length <= 2) {
-      setError(lastName, "Last name must be at least 3 characters");
+      setError(lastName, `Last name must be at least 3 characters`);
     } else {
       setSuccess(lastName);
       isLastNameValid = true;
     }
+    return isLastNameValid && lastNameValue;
+  }
+
+  function validateEmail() {
+    let isEmailValid = false;
+    const emailValue = email.value.trim();
 
     if (emailValue == "") {
       setError(email, "Email is required");
-    } else if(!emailRegex.test(emailValue)) {
+    } else if (!emailRegex.test(emailValue)) {
       setError(email, "Enter a valid email");
     } else {
       setSuccess(email);
       isEmailValid = true;
     }
+    return isEmailValid && emailValue;
+  }
+
+  function validatePhone() {
+    let isPhoneNumberValid = false;
+    const phoneValue = phone.value.trim();
 
     if (phoneValue == "") {
       setError(phone, "Phone number is required");
@@ -140,25 +181,18 @@ document.addEventListener("DOMContentLoaded", () => {
       setSuccess(phone);
       isPhoneNumberValid = true;
     }
+    return isPhoneNumberValid && phoneValue;
+  }
 
+  function validateSelect() {
+    let isSelectValid = false;
     if (select.value == "") {
       setError(select, "Please select a class");
     } else {
       setSuccess(select);
       isSelectValid = true;
     }
-
-    const isValid = isFirstNameValid && isLastNameValid && isEmailValid && isPhoneNumberValid && isSelectValid;
-
-    if (isValid) {
-      const student = {
-        firstName: firstNameValue,
-        lastName: lastNameValue,
-        email: emailValue,
-        phoneNumber: phoneValue,
-        class: select.value,
-      }
-    }
+    return isSelectValid && select.value;
   }
 
   function setError(input, message) {
@@ -180,6 +214,53 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function generateStudentId() {
-    
+    const totalStudent = String(students.length + 1).padStart(3, "0");
+    return `STU-${totalStudent}`;
   }
+
+  // Modal Section
+  viewStudents.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const selectedValue = selectedClass.value;
+
+    if (selectedValue === "") {
+      return;
+    }
+
+    const classStudents = students.filter(
+      (student) => student.class === selectedValue,
+    );
+
+    modalTitle.textContent = `${classes[selectedValue].name} Students`;
+
+    studentList.innerHTML = "";
+
+    if (classStudents.length === 0) {
+      studentList.innerHTML = "<p>No students registered in this class.</p>";
+    } else {
+      classStudents.forEach((student) => {
+        const studentItem = document.createElement("div");
+
+        studentItem.classList.add("student-item");
+
+        studentItem.innerHTML = `
+          <h3>${student.firstName} ${student.lastName}</h3>
+          <p>Student ID: ${student.id}</p>
+          <p>Email: ${student.email}</p>
+          <p>Phone: ${student.phoneNumber}</p>
+        `;
+
+        studentList.appendChild(studentItem);
+      });
+    }
+
+    modal.classList.add("isOpen");
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.remove("isOpen");
+    }
+  });
 });
