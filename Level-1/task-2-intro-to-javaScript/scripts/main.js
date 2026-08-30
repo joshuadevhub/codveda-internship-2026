@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalTitle = document.getElementById("modal-title");
   const studentList = document.getElementById("student-list");
 
+  const successModal = document.getElementById("success-modal");
+  const formContent = document.querySelectorAll(".form-content");
+
   const nameHasNumber = /[0-9]/;
   const phoneRegex =
     /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,3}[-\s\.]?[0-9]{3,}[-\s\.]?[0-9]{3,}$/;
@@ -91,24 +94,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function registerStudent() {
+    const firstNameValue = validateFirstName();
+    const lastNameValue = validateLastName();
+    const phoneNumberValue = validatePhone();
+    const emailValue = validateEmail();
+    const selectValue = validateSelect();
+
     const isValid =
-      validateFirstName() &&
-      validateLastName() &&
-      validatePhone() &&
-      validateEmail() &&
-      validateSelect();
+      firstNameValue &&
+      lastNameValue &&
+      phoneNumberValue &&
+      emailValue &&
+      selectValue;
 
     if (isValid) {
       const student = {
         id: generateStudentId(),
-        firstName: validateFirstName(),
-        lastName: validateLastName(),
-        email: validateEmail(),
-        phoneNumber: validatePhone(),
-        class: validateSelect(),
+        firstName: firstNameValue,
+        lastName: lastNameValue,
+        email: emailValue,
+        phoneNumber: phoneNumberValue,
+        class: selectValue,
       };
       students.push(student);
-      console.log(students);
+      showSuccessModal();
+      form.reset();
+      formContent.forEach((f) => {
+        f.classList.remove("success", "error");
+      });
     }
   }
 
@@ -263,4 +276,16 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.classList.remove("isOpen");
     }
   });
+
+  function showSuccessModal() {
+    successModal.classList.add("show");
+
+    setTimeout(() => {
+      successModal.classList.add("hide");
+
+      setTimeout(() => {
+        successModal.classList.remove("show", "hide");
+      }, 1000);
+    }, 4000);
+  }
 });

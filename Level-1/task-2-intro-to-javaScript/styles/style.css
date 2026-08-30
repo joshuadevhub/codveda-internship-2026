@@ -248,6 +248,7 @@ body {
 }
 
 .explore {
+  margin: 1rem 0;
   padding: 1rem;
   background-color: var(--surface-color);
 }
@@ -415,6 +416,66 @@ label {
   color: var(--muted-text);
   font-size: 0.9rem;
   margin-bottom: 0.3rem;
+}
+.success-modal{
+  background-color: rgba(15, 23, 42, 0.7);
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  padding: 0 1rem 0 1rem;
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity: 0;
+  justify-content: center;
+  align-items: flex-start;
+  transition: opacity 0.5s ease;
+}
+.success-modal.show{
+  display: flex;
+  opacity: 1;
+}
+
+.success-modal-content{
+  width: 98%;
+  background-color: var(--surface-color);
+  padding: 1rem;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  /* max-width: 400px; */
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+
+  animation: dropdown 2.5s ease-out;
+}
+.success-modal-content > div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+@keyframes dropdown{
+  0%{
+    transform: translateY(-100%);
+  }
+  60%{
+    transform: translateY(15px);
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUpOut {
+  to{
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+.success-modal.hide .success-modal-content{
+  animation: fadeUpOut 1s ease-in forwards;
 }
 
 @media (min-width: 768px) {

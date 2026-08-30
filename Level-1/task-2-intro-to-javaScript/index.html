@@ -36,9 +36,9 @@
         </button>
         <div class="menu-content">
           <ul>
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Explore Class</a></li>
-            <li><a href="#">Register</a></li>
+            <li class="active"><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="#explore">Explore Class</a></li>
+            <li><a href="#registration">Register</a></li>
           </ul>
         </div>
       </nav>
@@ -97,7 +97,7 @@
         </div>
       </section>
 
-      <section class="explore">
+      <section class="explore" id="explore">
         <div class="section-heading">
           <h2>Explore Classes</h2>
           <p>Browse Students by their class level</p>
@@ -123,7 +123,7 @@
         </div>
       </section>
 
-      <section class="registration">
+      <section class="registration" id="registration">
         <div class="section-heading">
           <h2>Register a Student</h2>
           <p>Add a new student to the StudentHub portal</p>
@@ -192,6 +192,15 @@
           <h2 id="modal-title"></h2>
 
           <div class="student-list" id="student-list"></div>
+        </div>
+      </section>
+
+      <section class="success-modal" id="success-modal">
+        <div class="success-modal-content">
+          <div>
+            <img src="./images/checkmark.svg" alt="" />
+            <p>Registration Successful</p>
+          </div>
         </div>
       </section>
     </main>
