@@ -1,21 +1,21 @@
 # Codveda Web Development Internship
 
-This repository contains the projects and tasks completed during my Web Development Internship at **Codveda Technologies**.
+This repository contains projects completed during my Web Development Internship at **Codveda Technologies**.
 
-The internship focuses on developing practical web development skills through projects covering basic, intermediate, and advanced web development concepts.
+The internship focuses on practical web development through basic, intermediate, and advanced projects.
 
 ---
 
 ## Internship Progress
 
-| Level   | Task   | Project               | Status      |
-| ------- | ------ | --------------------- | ----------- |
-| Level 1 | Task 1 | Bright Future Academy | ✅ Completed |
-| Level 1 | Task 2 | Coming Soon           | ⏳           |
-| Level 2 | Task 1 | Coming Soon           | ⏳           |
-| Level 2 | Task 2 | Coming Soon           | ⏳           |
-| Level 3 | Task 1 | Coming Soon           | ⏳           |
-| Level 3 | Task 2 | Coming Soon           | ⏳           |
+| Level   | Task   | Project                        | Status      |
+| ------- | ------ | ------------------------------ | ----------- |
+| Level 1 | Task 1 | Bright Future Academy          | Completed   |
+| Level 1 | Task 2 | StudentHub Registration Portal | Completed   |
+| Level 2 | Task 1 | Coming Soon                    | Not Started |
+| Level 2 | Task 2 | Coming Soon                    | Not Started |
+| Level 3 | Task 1 | Coming Soon                    | Not Started |
+| Level 3 | Task 2 | Coming Soon                    | Not Started |
 
 ---
 
@@ -23,105 +23,41 @@ The internship focuses on developing practical web development skills through pr
 
 ## Task 1 — Bright Future Academy
 
-### Overview
+A responsive school website for a fictional educational institution in Lagos, Nigeria.
 
-Bright Future Academy is a responsive school website created for a fictional educational institution in Lagos, Nigeria.
+**Technologies:** HTML5, CSS3, JavaScript, CSS Grid, Flexbox
 
-The website provides information about the school, its academic programs, admission process, and contact details. It was developed using a mobile-first approach with responsive layouts for different screen sizes.
+**Features:** Responsive design, navigation menu, school information pages, academic programs, admission sections, contact form, and responsive footer.
 
-### Features
+**Lighthouse:** Performance 97 | Accessibility 95 | Best Practices 100 | SEO 100
 
-* Responsive mobile-first design
-* Responsive navigation menu
-* Home page
-* About page
-* Academics page
-* Admission page
-* Contact page
-* Academic program sections
-* Admission call-to-action sections
-* Contact form
-* Responsive footer
-* Active navigation states
-* Mobile navigation overlay
-* Responsive layouts for mobile, tablet, and desktop
-
-### Technologies
-
-* HTML5
-* CSS3
-* JavaScript
-* CSS Grid
-* Flexbox
-* Responsive Web Design
-
-### SEO & Accessibility
-
-The website includes basic SEO and accessibility practices such as:
-
-* Semantic HTML
-* Descriptive page titles
-* Meta descriptions
-* Author metadata
-* Robots metadata
-* Descriptive link text
-* Accessible navigation controls
-* Proper form labels
-* Responsive design
-
-### Lighthouse Audit
-
-The Home page was tested using Google Chrome Lighthouse.
-
-| Category       |   Score |
-| -------------- | ------: |
-| Performance    |  **97** |
-| Accessibility  |  **95** |
-| Best Practices | **100** |
-| SEO            | **100** |
-
-### Project Structure
-
-```text
-task-1-static-website/
-├── index.html
-├── about.html
-├── academics.html
-├── admission.html
-├── contact.html
-├── styles/
-│   └── style.css
-├── scripts/
-│   └── nav-toggle.js
-└── images/
-    ├── icons/
-    └── ...
-```
-
-### Project Status
-
-✅ Completed
+**Status:** Completed
 
 ---
 
-## Task 2 — Coming Soon
+## Task 2 — StudentHub Registration Portal
 
-Project details will be added after completion.
+A responsive student registration portal built with HTML, CSS, and JavaScript.
 
-**Status:** ⏳ Not Started
+**Technologies:** HTML5, CSS3, JavaScript, CSS Grid, Flexbox
+
+**Features:** Student registration, form validation, unique student IDs, duplicate email and phone checks, class filtering, student lists, and registration notifications.
+
+**Lighthouse:** Performance 74 | Accessibility 94 | Best Practices 100 | SEO 100
+
+**Status:** Completed
 
 ---
-
 
 # Level 2 — Intermediate Web Development
 
 ## Task 1 — Coming Soon
 
-**Status:** ⏳ Not Started
+**Status:** Not Started
 
 ## Task 2 — Coming Soon
 
-**Status:** ⏳ Not Started
+**Status:** Not Started
 
 ---
 
@@ -129,29 +65,26 @@ Project details will be added after completion.
 
 ## Task 1 — Coming Soon
 
-**Status:** ⏳ Not Started
+**Status:** Not Started
 
 ## Task 2 — Coming Soon
 
-**Status:** ⏳ Not Started
+**Status:** Not Started
 
 ---
 
 # Skills Demonstrated
 
-Throughout the internship, I will develop and demonstrate skills in:
-
-* HTML5
-* CSS3
-* JavaScript
-* Responsive Web Design
-* CSS Grid
-* Flexbox
-* Web Accessibility
-* SEO
-* Git & GitHub
-* Frontend Development
-* Web Application Development
+- HTML5
+- CSS3
+- JavaScript
+- Responsive Web Design
+- CSS Grid
+- Flexbox
+- Web Accessibility
+- SEO
+- Git & GitHub
+- Frontend Development
 
 ---
 
