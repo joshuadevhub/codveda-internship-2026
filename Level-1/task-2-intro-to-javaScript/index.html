@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Registration Portal</title>
 
+    <meta
+      name="description"
+      content="StudentHub is a simple student registration portal for managing student information and exploring students by class."
+    />
+    <meta name="author" content="Elemide Joshua Damilare" />
+    <meta
+      name="keywords"
+      content="student registration, student portal, student management, school portal, student information"
+    />
+    <meta name="robots" content="index, follow" />
+
     <link rel="stylesheet" href="./styles/style.css" />
     <script src="./scripts/main.js" defer></script>
   </head>
@@ -28,7 +39,13 @@
       </button>
 
       <nav class="nav" id="navbar">
-        <button class="close-icon" id="close-icon">
+        <button
+          class="close-icon"
+          id="close-icon"
+          aria-label="Close navigation menu"
+          ,
+          aria-expanded="true"
+        >
           <img
             src="../task-1-static-website/images/icons/close-icon.svg"
             alt=""
@@ -36,7 +53,9 @@
         </button>
         <div class="menu-content">
           <ul>
-            <li class="active"><a href="index.html" aria-current="page">Home</a></li>
+            <li class="active">
+              <a href="index.html" aria-current="page">Home</a>
+            </li>
             <li><a href="#explore">Explore Class</a></li>
             <li><a href="#registration">Register</a></li>
           </ul>
@@ -71,7 +90,7 @@
                 <div class="student-avatar">DJ</div>
 
                 <div>
-                  <h3>David Johnson</h3>
+                  <p>David Johnson</p>
                   <p>Senior Secondary 2</p>
                 </div>
               </div>
@@ -104,6 +123,7 @@
         </div>
 
         <div class="explore-input">
+          <label for="class-select" class="hidden">Select a class</label>
           <select name="class" id="class-select" class="selected-class">
             <option value="" selected>Select a class</option>
             <option value="ss1">SS 1</option>
@@ -172,7 +192,7 @@
             </div>
 
             <div class="explore-input form-content">
-              <label for="class">Class</label>
+              <label for="select">Class</label>
               <select name="class" class="selected-class" id="select">
                 <option value="" selected>Select a class</option>
                 <option value="ss1">SS 1</option>

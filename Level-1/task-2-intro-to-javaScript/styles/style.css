@@ -39,6 +39,8 @@ body {
 .nav .close-icon {
   background-color: transparent;
   border: none;
+  width: 24px;
+  height: 24px;
 }
 .header .nav {
   position: fixed;
@@ -86,9 +88,12 @@ body {
 .menu-content ul li.active a {
   color: var(--primary-color);
 }
+.hidden {
+  display: none;
+}
 
 .hero {
-  background-image: url("../images/indigo-purple-gradient.jpg");
+  background-image: url("../images/indigo-purple-gradient.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -213,9 +218,10 @@ body {
   font-weight: bold;
 }
 
-.student-info h3 {
+.student-info > div:nth-child(2) p:first-of-type {
   color: var(--surface-color);
   margin-bottom: 0.2rem;
+  font-size: 1.3rem;
 }
 
 .student-info p {
@@ -417,7 +423,7 @@ label {
   font-size: 0.9rem;
   margin-bottom: 0.3rem;
 }
-.success-modal{
+.success-modal {
   background-color: rgba(15, 23, 42, 0.7);
   position: fixed;
   inset: 0;
@@ -431,50 +437,49 @@ label {
   align-items: flex-start;
   transition: opacity 0.5s ease;
 }
-.success-modal.show{
+.success-modal.show {
   display: flex;
   opacity: 1;
 }
 
-.success-modal-content{
+.success-modal-content {
   width: 98%;
   background-color: var(--surface-color);
   padding: 1rem;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  /* max-width: 400px; */
   text-align: center;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
 
-  animation: dropdown 2.5s ease-out;
+  animation: dropdown 2s ease-out;
 }
-.success-modal-content > div{
+.success-modal-content > div {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
-@keyframes dropdown{
-  0%{
+@keyframes dropdown {
+  0% {
     transform: translateY(-100%);
   }
-  60%{
+  60% {
     transform: translateY(15px);
     opacity: 1;
   }
-  100%{
+  100% {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes fadeUpOut {
-  to{
+  to {
     transform: translateY(-50px);
     opacity: 0;
   }
 }
-.success-modal.hide .success-modal-content{
+.success-modal.hide .success-modal-content {
   animation: fadeUpOut 1s ease-in forwards;
 }
 
@@ -545,7 +550,7 @@ label {
   .hero-visual {
     justify-content: flex-end;
   }
-  .explore{
+  .explore {
     padding: 3rem 2rem;
     margin: 0 auto 2rem;
   }

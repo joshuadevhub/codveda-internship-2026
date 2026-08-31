@@ -171,10 +171,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let isEmailValid = false;
     const emailValue = email.value.trim();
 
+    const emailExist = emailExists(students, emailValue);
+
     if (emailValue == "") {
       setError(email, "Email is required");
     } else if (!emailRegex.test(emailValue)) {
       setError(email, "Enter a valid email");
+    } else if (emailExist) {
+      setError(email, "This email is already registered to another student");
     } else {
       setSuccess(email);
       isEmailValid = true;
@@ -186,15 +190,30 @@ document.addEventListener("DOMContentLoaded", () => {
     let isPhoneNumberValid = false;
     const phoneValue = phone.value.trim();
 
+    const phoneExists = phoneNumberExists(students, phoneValue);
+
     if (phoneValue == "") {
       setError(phone, "Phone number is required");
     } else if (!phoneRegex.test(phoneValue)) {
       setError(phone, "Enter a valid phone number");
+    } else if (phoneExists) {
+      setError(
+        phone,
+        "This phone number is already registered to another student",
+      );
     } else {
       setSuccess(phone);
       isPhoneNumberValid = true;
     }
     return isPhoneNumberValid && phoneValue;
+  }
+
+  function phoneNumberExists(students, value) {
+    return students.some((phone) => phone.phoneNumber === value);
+  }
+
+  function emailExists(students, value) {
+    return students.some((e) => e.email === value);
   }
 
   function validateSelect() {
@@ -286,6 +305,6 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         successModal.classList.remove("show", "hide");
       }, 1000);
-    }, 4000);
+    }, 3500);
   }
 });
