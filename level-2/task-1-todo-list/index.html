@@ -28,8 +28,8 @@
     <main>
       <h1>My Tasks</h1>
 
-      <section class="todo-container">
-        <div class="todo-item">
+      <section class="todo-container" id="todo-container">
+        <!-- <div class="todo-item">
           <p>6:00 - 7:00</p>
           <div>
             <label for="checkbox">Fitness</label>
@@ -39,19 +39,7 @@
             <input type="checkbox" name="checkbox" id="checkbox" />
             <span class="check-mark"></span>
           </label>
-        </div>
-
-        <div class="todo-item">
-          <p>6:00 - 7:00</p>
-          <div>
-            <label for="checkboxe">Fitness</label>
-            <p>Exercise and Gym</p>
-          </div>
-          <label class="task-check-box">
-            <input type="checkbox" name="checkbox" id="checkboxe" />
-            <span class="check-mark"></span>
-          </label>
-        </div>
+        </div> -->
       </section>
 
       <section class="task-box-container" id="task-box-container">
@@ -68,6 +56,7 @@
                 name="task-name"
                 id="task-name"
               />
+              <p class="error-message"></p>
             </div>
 
             <div class="form-control">
@@ -78,6 +67,7 @@
                 placeholder="Text Description..."
                 rows="3"
               ></textarea>
+              <p class="error-message"></p>
             </div>
 
             <button>Create Task</button>

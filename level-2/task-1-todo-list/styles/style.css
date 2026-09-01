@@ -181,6 +181,18 @@ main h1{
 .form-control input:focus, .form-control textarea:focus{
   border: 1px solid var(--primary-color);
 }
+.form-control.success input, .form-control.success textarea{
+  border: 1px solid var(--success-color);
+}
+.form-control.error input, .form-control.error textarea{
+  border: 1px solid var(--danger-color);
+}
+.error-message{
+  font-size: 0.75rem;
+  color: var(--danger-color);
+  margin-left: 4px;
+  margin-top: 3px;
+}
 form button{
   width: 100%;
   background-color: var(--primary-color);
