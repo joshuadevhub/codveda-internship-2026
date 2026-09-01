@@ -51,9 +51,9 @@ A responsive student registration portal built with HTML, CSS, and JavaScript.
 
 # Level 2 — Intermediate Web Development
 
-## Task 1 — Coming Soon
+## Task 1 — To-do List App
 
-**Status:** Not Started
+**Status:** In Progress
 
 ## Task 2 — Coming Soon
 
