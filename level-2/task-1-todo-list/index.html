@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List App</title>
+
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="./scripts/main.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <section>
+        <img src="./images/grid.svg" alt="" />
+        <span>14 Sept</span>
+        <img src="./images/alarm.svg" alt="" />
+      </section>
+
+      <section>
+        <div class="today-task">
+          <p>Today</p>
+          <p>6 Task</p>
+        </div>
+        <button class="add-task" id="add-task-btn" type="button">Add New</button>
+      </section>
+    </header>
+
+    <main>
+      <h1>My Tasks</h1>
+
+      <section class="todo-container">
+        <div class="todo-item">
+          <p>6:00 - 7:00</p>
+          <div>
+            <label for="checkbox">Fitness</label>
+            <p>Exercise and Gym</p>
+          </div>
+          <label class="task-check-box">
+            <input type="checkbox" name="checkbox" id="checkbox" />
+            <span class="check-mark"></span>
+          </label>
+        </div>
+
+        <div class="todo-item">
+          <p>6:00 - 7:00</p>
+          <div>
+            <label for="checkboxe">Fitness</label>
+            <p>Exercise and Gym</p>
+          </div>
+          <label class="task-check-box">
+            <input type="checkbox" name="checkbox" id="checkboxe" />
+            <span class="check-mark"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="task-box-container" id="task-box-container">
+        <div class="task-box">
+          <h2>Create Task</h2>
+
+          <form id="form">
+
+            <div class="form-control">
+              <label for="task-name">Name</label>
+              <input
+                type="text"
+                placeholder="Name"
+                name="task-name"
+                id="task-name"
+              />
+            </div>
+
+            <div class="form-control">
+              <label for="task-description">Description</label>
+              <textarea
+                id="task-description"
+                name="task-description"
+                placeholder="Text Description..."
+                rows="3"
+              ></textarea>
+            </div>
+
+            <button>Create Task</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer></footer>
+  </body>
+</html>
