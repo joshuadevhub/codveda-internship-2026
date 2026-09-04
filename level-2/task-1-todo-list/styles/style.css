@@ -83,7 +83,7 @@ main h1{
 .todo-container .todo-item{
   background-color: rgba(79, 70, 229, 0.45);
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
   gap: 1rem;
   padding: 0.5rem;
@@ -136,6 +136,12 @@ main h1{
   border-radius: 1rem;
   padding: 1rem;
   animation: slideDown 3s ease-out;
+}
+.empty-task{
+  font-size: 0.9rem;
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 3rem;
 }
 
 @keyframes slideDown {

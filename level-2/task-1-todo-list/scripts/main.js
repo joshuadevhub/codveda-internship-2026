@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const addTaskBtn = document.getElementById("add-task-btn");
   const taskBoxContainer = document.getElementById("task-box-container");
+  const taskHeader = document.getElementById("task-header");
+  const formButton = document.getElementById("form-btn");
 
   const form = document.getElementById("form");
   const taskName = document.getElementById("task-name");
@@ -8,8 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const formControl = document.querySelectorAll(".form-control");
 
   const todoContainer = document.getElementById("todo-container");
+  const emptyTask = document.querySelector(".empty-task");
 
-  const tasks = [];
+  let tasks = [];
+  let taskBeingEditedId = null;
 
   addTaskBtn.addEventListener("click", () => {
     taskBoxContainer.classList.add("show");
@@ -21,11 +25,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  handleTaskToggle();
+  deleteTask();
+  editTask();
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    getUserData();
-    // displayTask(tasks);
+    if (taskBeingEditedId !== null) {
+      let taskToEdit = tasks.find(task => task.taskId === taskBeingEditedId);
+      taskToEdit.taskName = taskName.value;
+      taskToEdit.taskDescription = taskDescription.value;
+      taskHeader.textContent = "Create Task";
+      formButton.textContent = "Create Task";
+      displayTask(tasks);
+      resetForm(form, formControl);
+      taskBoxContainer.classList.remove("show");
+      taskBeingEditedId = null;
+    } else {
+      getUserData();
+      displayTask(tasks);
+    }
   });
 
   function getUserData() {
@@ -45,9 +65,95 @@ document.addEventListener("DOMContentLoaded", () => {
       tasks.push(taskData);
       resetForm(form, formControl);
       taskBoxContainer.classList.remove("show");
-      displayTask(tasks);
-      console.log(taskData);
     }
+  }
+
+  function displayTask(tasks) {
+    if (tasks.length <= 0) {
+      emptyTask.style.display = "block";
+      todoContainer.innerHTML = "";
+    } else {
+      emptyTask.style.display = "none";
+      todoContainer.innerHTML = "";
+
+      tasks.forEach((task) => {
+        todoContainer.innerHTML += `
+        <div class="todo-item">
+          <label class="task-check-box">
+            <input type="checkbox" name="checkbox" id="${task.checkBoxId}" />
+            <span class="check-mark"></span>
+          </label>
+          <div>
+            <label for="${task.checkBoxId}">${task.taskName}</label>
+            <p>${task.taskDescription}</p>
+          </div>
+
+          <div>
+            <img src="./images/edit.svg" alt="" id="${task.taskId}" class="edit-task">
+          </div>
+
+          <div>
+            <img src="./images/delete.svg" alt="" id="${task.taskId}" class="delete-btn">
+          </div>
+
+        </div>
+        `;
+      });
+    }
+  }
+
+  function handleTaskToggle() {
+    todoContainer.addEventListener("change", (e) => {
+      const clickedCheckBox = e.target;
+      const inputId = clickedCheckBox.id;
+      let newTask;
+
+      if (clickedCheckBox.checked) {
+        newTask = tasks.map((task) =>
+          task.checkBoxId === inputId ? { ...task, isCompleted: true } : task,
+        );
+        tasks = [...newTask];
+      } else {
+        newTask = tasks.map(task => task.checkBoxId === inputId ? { ...task, isCompleted: false } : task);
+        tasks = [...newTask];
+      }
+      console.log(newTask);
+    });
+
+  }
+
+  function deleteTask() {
+    todoContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("delete-btn")) {
+        const isToDelete = e.target.id;
+        console.log(isToDelete);
+
+        const newTask = tasks.filter((task) => task.taskId !== isToDelete);
+        tasks = [...newTask];
+        console.log(tasks);
+        displayTask(tasks);
+      }
+    });
+  }
+
+  function editTask() {
+    todoContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("edit-task")) {
+        let editedTaskId = e.target.id;
+
+        const taskToEdit = tasks.find(task => task.taskId === editedTaskId);
+        taskBoxContainer.classList.add("show");
+        taskHeader.textContent = "Edit Task";
+        formButton.textContent = "Edit Task";
+        taskName.value = taskToEdit.taskName;
+        taskDescription.value = taskToEdit.taskDescription
+        taskBeingEditedId = editedTaskId
+      }
+    })
+  }
+
+  function editUserData(taskData) {
+    
   }
 
   function validateTaskName() {
@@ -113,30 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
   }
 
-  function displayTask(tasks) {
-    todoContainer.innerHTML = "";
-
-    const todoItems = document.createElement("div");
-    tasks.forEach(task => {
-
-      todoItems.innerHTML += `
-      <div class="todo-item">
-        <p>6:00 - 7:00</p>
-        <div>
-          <label for="${task.checkBoxId}">${task.taskName}</label>
-          <p>${task.taskDescription}</p>
-        </div>
-        <label class="task-check-box">
-          <input type="checkbox" name="checkbox" id="${task.checkBoxId}" />
-          <span class="check-mark"></span>
-        </label>
-      </div>
-      `;
-    });
-    todoContainer.appendChild(todoItems);
-    console.log("Task Added Successfully");
-  }
-
   function generateTaskId() {
     let highestNumber = 0;
     // TSK-20260901-001
@@ -146,12 +228,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const date = String(now.getDate()).padStart(2, "0");
     let newTaskId = "TSK-" + year + month + date + "-";
 
-    tasks.forEach(task => {
+    tasks.forEach((task) => {
       let id = Number(task.taskId.split("-")[2]);
       if (id > highestNumber) {
         highestNumber = id;
       }
-    })
+    });
     const newSequenceNumber = String(++highestNumber).padStart(3, "0");
     newTaskId += newSequenceNumber;
     return newTaskId;
@@ -161,12 +243,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let highestNumber = 0;
     // checkbox-001;
     let checkBoxId = "checkbox-";
-    tasks.forEach(task => {
+    tasks.forEach((task) => {
       let currentBoxId = Number(task.checkBoxId.split("-")[1]);
       if (currentBoxId > highestNumber) {
         highestNumber = currentBoxId;
       }
-    })
+    });
     let newHighestNumber = String(++highestNumber).padStart(3, "0");
     checkBoxId += newHighestNumber;
     return checkBoxId;
