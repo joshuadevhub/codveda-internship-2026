@@ -15,6 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let tasks = [];
   let taskBeingEditedId = null;
 
+  loadTasks();
+  displayTask(tasks);
+
   addTaskBtn.addEventListener("click", () => {
     taskBoxContainer.classList.add("show");
   });
@@ -38,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       taskToEdit.taskDescription = taskDescription.value;
       taskHeader.textContent = "Create Task";
       formButton.textContent = "Create Task";
+      saveTasks();
       displayTask(tasks);
       resetForm(form, formControl);
       taskBoxContainer.classList.remove("show");
@@ -63,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         createdAt: new Date().toISOString(),
       };
       tasks.push(taskData);
+      saveTasks();
       resetForm(form, formControl);
       taskBoxContainer.classList.remove("show");
     }
@@ -80,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         todoContainer.innerHTML += `
         <div class="todo-item">
           <label class="task-check-box">
-            <input type="checkbox" name="checkbox" id="${task.checkBoxId}" />
+            <input type="checkbox" name="checkbox" id="${task.checkBoxId}" ${task.isCompleted ? "checked" : ""}/>
             <span class="check-mark"></span>
           </label>
           <div>
@@ -113,9 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
           task.checkBoxId === inputId ? { ...task, isCompleted: true } : task,
         );
         tasks = [...newTask];
+        saveTasks();
       } else {
         newTask = tasks.map(task => task.checkBoxId === inputId ? { ...task, isCompleted: false } : task);
         tasks = [...newTask];
+        saveTasks();
       }
       console.log(newTask);
     });
@@ -130,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const newTask = tasks.filter((task) => task.taskId !== isToDelete);
         tasks = [...newTask];
+        saveTasks();
         console.log(tasks);
         displayTask(tasks);
       }
@@ -150,10 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
         taskBeingEditedId = editedTaskId
       }
     })
-  }
-
-  function editUserData(taskData) {
-    
   }
 
   function validateTaskName() {
@@ -252,5 +256,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let newHighestNumber = String(++highestNumber).padStart(3, "0");
     checkBoxId += newHighestNumber;
     return checkBoxId;
+  }
+
+  function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
+  function loadTasks() {
+    const savedTasked = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks = [...savedTasked]
   }
 });
