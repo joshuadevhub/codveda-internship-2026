@@ -12,8 +12,8 @@ The internship focuses on practical web development through basic, intermediate,
 | ------- | ------ | ------------------------------ | ----------- |
 | Level 1 | Task 1 | Bright Future Academy          | Completed   |
 | Level 1 | Task 2 | StudentHub Registration Portal | Completed   |
-| Level 2 | Task 1 | Coming Soon                    | Not Started |
-| Level 2 | Task 2 | Coming Soon                    | Not Started |
+| Level 2 | Task 1 | To-Do List App                 | Completed   |
+| Level 2 | Task 2 | Coming Soon                    | In Progress |
 | Level 3 | Task 1 | Coming Soon                    | Not Started |
 | Level 3 | Task 2 | Coming Soon                    | Not Started |
 
@@ -53,11 +53,21 @@ A responsive student registration portal built with HTML, CSS, and JavaScript.
 
 ## Task 1 — To-do List App
 
-**Status:** In Progress
+A responsive to-do list application built with HTML, CSS, and JavaScript
+
+**Technologies:** HTML5, CSS3, JavaScript, CSS Grid, Flexbox, Local Storage
+
+**Features:** Task creation, form validation, task editing, task deletion, task completion tracking, unique task IDs, local storage persistence, empty task state, and responsive design.
+
+**Lighthouse:** Performance 99 | Accessibility 91 | Best Practices 100 | SEO 100
+
+**Status:** Completed
+
+---
 
 ## Task 2 — Coming Soon
 
-**Status:** Not Started
+**Status:** In Progress
 
 ---
 
