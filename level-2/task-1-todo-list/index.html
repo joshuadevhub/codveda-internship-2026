@@ -3,7 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo List App</title>
+
+    <title>Todo List App | Manage Your Tasks</title>
+
+    <meta
+      name="description"
+      content="A simple and responsive To-Do List application for creating, managing, and tracking daily tasks."
+    />
+    <meta name="author" content="Elemide Joshua Damilare" />
+    <meta
+      name="keywords"
+      content="todo list, task manager, task management, productivity, JavaScript"
+    />
+    <meta name="theme-color" content="#4f46e5" />
 
     <link rel="stylesheet" href="./styles/style.css" />
     <script src="./scripts/main.js" defer></script>
@@ -12,24 +24,25 @@
     <header class="header">
       <section>
         <img src="./images/grid.svg" alt="" />
-        <span>14 Sept</span>
+        <span id="today"></span>
         <img src="./images/alarm.svg" alt="" />
       </section>
 
       <section>
         <div class="today-task">
           <p>Today</p>
-          <p>6 Task</p>
+          <p><span id="total-task"></span> Task</p>
         </div>
-        <button class="add-task" id="add-task-btn" type="button">Add New</button>
+        <button class="add-task" id="add-task-btn" type="button">
+          Add New
+        </button>
       </section>
     </header>
 
     <main>
       <h1>My Tasks</h1>
 
-      <section class="todo-container" id="todo-container">
-      </section>
+      <section class="todo-container" id="todo-container"></section>
       <p class="empty-task">No tasks has been added</p>
 
       <section class="task-box-container" id="task-box-container">
@@ -37,7 +50,6 @@
           <h2 id="task-header">Create Task</h2>
 
           <form id="form">
-
             <div class="form-control">
               <label for="task-name">Name</label>
               <input
@@ -60,12 +72,10 @@
               <p class="error-message"></p>
             </div>
 
-            <button id="form-btn">Create Task</button>
+            <button id="form-btn" type="submit">Create Task</button>
           </form>
         </div>
       </section>
     </main>
-
-    <footer></footer>
   </body>
 </html>

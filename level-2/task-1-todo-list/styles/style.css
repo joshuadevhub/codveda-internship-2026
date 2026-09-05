@@ -7,7 +7,7 @@
 
   --text-color: #0f172a;
   --muted-text: #64748b;
-  --muted-white: #CBD5E1;
+  --muted-white: #cbd5e1;
 
   --border-color: #e2e8f0;
 
@@ -15,49 +15,50 @@
   --danger-color: #dc2626;
   --warning-color: #d97706;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-html, body{
+html,
+body {
   height: 100%;
   margin: 0;
 }
 
-body{
+body {
   background-color: var(--primary-color);
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
 }
-.header{
+.header {
   padding: 0.5rem;
 }
-.header > section{
+.header > section {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 2rem 0 2.5rem 0;
   padding: 0.6rem;
 }
-.header > section span{
+.header > section span {
   color: var(--muted-white);
   font-weight: bold;
   font-size: 1.2rem;
 }
-.today-task > p{
+.today-task > p {
   color: var(--muted-white);
 }
-.today-task > p:first-of-type{
+.today-task > p:first-of-type {
   font-size: 1.6rem;
   font-weight: bold;
 }
-.today-task > p:last-of-type{
+.today-task > p:last-of-type {
   margin-left: 0.4rem;
   font-size: 0.9rem;
 }
-.add-task{
+.add-task {
   padding: 0.6rem 1rem;
   border: 1px solid var(--border-color);
   border-radius: 0.4rem;
@@ -67,20 +68,20 @@ body{
   color: var(--primary-dark);
   background-color: var(--background-color);
 }
-main{
+main {
   background-color: var(--background-color);
   flex: 1;
   overflow: auto;
   border-top-left-radius: 2rem;
   padding: 1rem 1.2rem;
 }
-main h1{
+main h1 {
   color: var(--text-color);
 }
-.todo-container{
+.todo-container {
   margin: 1.5rem 0 1rem 0;
 }
-.todo-container .todo-item{
+.todo-container .todo-item {
   background-color: rgba(79, 70, 229, 0.45);
   display: grid;
   grid-template-columns: auto 1fr auto auto;
@@ -93,16 +94,16 @@ main h1{
   transition: all 0.8s ease;
 }
 
-.todo-item p{
+.todo-item p {
   font-size: 0.8rem;
 }
-.todo-item > div:first-of-type label{
+.todo-item > div:first-of-type label {
   font-weight: bolder;
 }
-.task-check-box input{
+.task-check-box input {
   display: none;
 }
-.check-mark{
+.check-mark {
   width: 20px;
   height: 20px;
   border: 2px solid var(--muted-text);
@@ -110,11 +111,11 @@ main h1{
   display: inline-block;
   background-color: var(--background-color);
 }
-.task-check-box input:checked + .check-mark{
+.task-check-box input:checked + .check-mark {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
 }
-.task-box-container{
+.task-box-container {
   background-color: rgba(79, 70, 229, 0.5);
   inset: 0;
   position: fixed;
@@ -125,19 +126,19 @@ main h1{
   visibility: hidden;
   pointer-events: none;
 }
-.task-box-container.show{
+.task-box-container.show {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
-.task-box{
+.task-box {
   background-color: var(--background-color);
   width: 90%;
   border-radius: 1rem;
   padding: 1rem;
   animation: slideDown 3s ease-out;
 }
-.empty-task{
+.empty-task {
   font-size: 0.9rem;
   color: var(--text-color);
   text-align: center;
@@ -155,17 +156,17 @@ main h1{
     opacity: 1;
   }
 }
-.task-box h2{
+.task-box h2 {
   text-align: center;
   color: var(--primary-color);
 }
-.task-box form{
+.task-box form {
   margin: 2rem 0 1.5rem 0;
 }
-.form-control{
+.form-control {
   margin-bottom: 2rem;
 }
-.form-control label{
+.form-control label {
   font-weight: bold;
   color: var(--text-color);
   font-size: 0.9rem;
@@ -173,7 +174,8 @@ main h1{
   margin-left: 3px;
   margin-bottom: 5px;
 }
-.form-control input, .form-control textarea{
+.form-control input,
+.form-control textarea {
   width: 100%;
   background-color: var(--border-color);
   border: 1px solid var(--border-color);
@@ -184,22 +186,25 @@ main h1{
   transition: border 0.6s ease;
   font-size: 1rem;
 }
-.form-control input:focus, .form-control textarea:focus{
+.form-control input:focus,
+.form-control textarea:focus {
   border: 1px solid var(--primary-color);
 }
-.form-control.success input, .form-control.success textarea{
+.form-control.success input,
+.form-control.success textarea {
   border: 1px solid var(--success-color);
 }
-.form-control.error input, .form-control.error textarea{
+.form-control.error input,
+.form-control.error textarea {
   border: 1px solid var(--danger-color);
 }
-.error-message{
+.error-message {
   font-size: 0.75rem;
   color: var(--danger-color);
   margin-left: 4px;
   margin-top: 3px;
 }
-form button{
+form button {
   width: 100%;
   background-color: var(--primary-color);
   color: var(--muted-white);
@@ -210,4 +215,95 @@ form button{
   text-align: center;
   font-size: 1.1rem;
   font-weight: bold;
+}
+
+/* Tablet Responsiveness */
+@media (min-width: 600px) {
+  .header {
+    padding: 0.8rem 2rem;
+  }
+
+  .header > section {
+    margin: 1.5rem 0 2rem 0;
+    padding: 0.8rem;
+  }
+
+  main {
+    padding: 2rem 2.5rem;
+  }
+
+  main h1 {
+    font-size: 2rem;
+  }
+
+  .todo-container {
+    margin-top: 2rem;
+  }
+
+  .todo-container .todo-item {
+    padding: 0.8rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .todo-item p {
+    font-size: 0.9rem;
+  }
+
+  .task-box {
+    width: 80%;
+    max-width: 550px;
+    padding: 1.5rem;
+  }
+}
+
+/* Desktop Responsiveness */
+@media (min-width: 900px) {
+  .header {
+    padding: 0.5rem 4rem;
+  }
+
+  .header > section {
+    margin: 1.2rem 0 1.5rem 0;
+  }
+
+  .header > section span {
+    font-size: 1.1rem;
+  }
+
+  .today-task > p:first-of-type {
+    font-size: 1.8rem;
+  }
+
+  main {
+    padding: 2.5rem 4rem;
+    border-top-left-radius: 2.5rem;
+  }
+
+  main h1 {
+    font-size: 2.2rem;
+  }
+
+  .todo-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+  }
+
+  .todo-container .todo-item {
+    padding: 1rem 1.2rem;
+    gap: 2rem;
+  }
+
+  .todo-item p {
+    font-size: 0.9rem;
+  }
+
+  .task-box {
+    width: 90%;
+    max-width: 600px;
+    padding: 2rem;
+  }
+
+  .task-box h2 {
+    font-size: 1.7rem;
+  }
 }

@@ -11,12 +11,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const todoContainer = document.getElementById("todo-container");
   const emptyTask = document.querySelector(".empty-task");
+  const totalTask = document.getElementById("total-task");
+  const today = document.getElementById("today");
 
   let tasks = [];
   let taskBeingEditedId = null;
 
   loadTasks();
   displayTask(tasks);
+
+  const now = new Date();
+  const todayDate = String(now.getDate()).padStart(2, "0");
+  const month = now.toLocaleString('en-US', { month: "short" });
+  today.textContent = `${todayDate} ${month}`;
+  if (tasks.length <= 0) {
+    totalTask.textContent = 0;
+  } else {
+    totalTask.textContent = tasks.length;
+  }
 
   addTaskBtn.addEventListener("click", () => {
     taskBoxContainer.classList.add("show");
@@ -124,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
         tasks = [...newTask];
         saveTasks();
       }
-      console.log(newTask);
     });
 
   }
@@ -133,12 +144,10 @@ document.addEventListener("DOMContentLoaded", () => {
     todoContainer.addEventListener("click", (e) => {
       if (e.target.classList.contains("delete-btn")) {
         const isToDelete = e.target.id;
-        console.log(isToDelete);
 
         const newTask = tasks.filter((task) => task.taskId !== isToDelete);
         tasks = [...newTask];
         saveTasks();
-        console.log(tasks);
         displayTask(tasks);
       }
     });
