@@ -1,0 +1,26 @@
+:root {
+  --app-background: #0b1f3a;
+  --main-background: #123b63;
+  --ui-icon: #a7c7e7;
+  --accent: #67e8f9;
+  --card: #1e4976;
+  --card-light: #285b8f;
+  --main-text: #f8fafc;
+  --muted-text: #94a3b8;
+  --input-background: #102e4a;
+  --error: #f87171;
+  --sans: Arial, Helvetica, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: var(--app-background);
+  font-family: var(--sans);
+  color: var(--main-text);
+}
