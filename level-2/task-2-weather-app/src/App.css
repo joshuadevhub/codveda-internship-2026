@@ -138,6 +138,8 @@ section {
   overflow-x: auto;
   align-items: center;
   padding: 1rem 0.5rem;
+  scrollbar-width: none;
+  --webkit-scrollbar-width: none;
 }
 .forecast-info {
   flex: 0 0 85px;
