@@ -1,41 +1,34 @@
-import { CloudSunRainIcon, CalendarDaysIcon, SunIcon } from "lucide-react";
+export function DailyForecast({ daily }) {
+  if (!daily) {
+    return null;
+  }
 
-export function DailyForecast() {
   return (
     <section>
       <div className="daily-heading">
-        <CalendarDaysIcon size={20} className="clock-icon" />
-        <h2>Daily Forecast</h2>
+        <h2>7-Day Forecast</h2>
       </div>
 
       <div className="daily-forecast">
-        <div className="daily-info">
-          <p className="day">Today</p>
-          <CloudSunRainIcon size={35} />
-          <p className="condition">Rainy</p>
-          <p className="temperature">29° / 24°</p>
-        </div>
+        {daily.time.map((date, index) => {
+          const day = new Date(date);
 
-        <div className="daily-info">
-          <p className="day">Tomorrow</p>
-          <CloudSunRainIcon size={35} />
-          <p className="condition">Rainy</p>
-          <p className="temperature">28° / 23°</p>
-        </div>
+          return (
+            <div className="daily-info" key={date}>
+              <p className="day">
+                {day.toLocaleDateString([], {
+                  weekday: "short",
+                })}
+              </p>
 
-        <div className="daily-info">
-          <p className="day">Wednesday</p>
-          <SunIcon size={35} />
-          <p className="condition">Sunny</p>
-          <p className="temperature">31° / 25°</p>
-        </div>
+              <p className="condition">🌤️</p>
 
-        <div className="daily-info">
-          <p className="day">Thursday</p>
-          <CloudSunRainIcon size={35} />
-          <p className="condition">Cloudy</p>
-          <p className="temperature">30° / 24°</p>
-        </div>
+              <p className="temperature">{daily.temperature_2m_max[index]}°C</p>
+
+              <p className="temperature">{daily.temperature_2m_min[index]}°C</p>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

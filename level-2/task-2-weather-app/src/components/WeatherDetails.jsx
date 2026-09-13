@@ -1,29 +1,28 @@
-import { WindIcon, DropletIcon, SunIcon } from "lucide-react";
-
-export function WeatherDetails() {
+export function WeatherDetails({ humidity, feelsLike, windSpeed }) {
   return (
-    <section>
-      <div className="weather-details-grid">
-        <div>
-          <WindIcon size={20} className="wind-icon" color="#f8fafc" />
-          <p>
-            <span>11</span>Km/hr
-          </p>
-        </div>
+    <section className="weather-details-grid">
+      <div>
+        <p>
+          Humidity
+          <br />
+          <span>{humidity !== undefined ? `${humidity}%` : "--"}</span>
+        </p>
+      </div>
 
-        <div>
-          <DropletIcon size={20} className="droplet-icon" />
-          <p>
-            <span>0.2</span>%
-          </p>
-        </div>
+      <div>
+        <p>
+          Feels Like
+          <br />
+          <span>{feelsLike !== undefined ? `${feelsLike}°C` : "--"}</span>
+        </p>
+      </div>
 
-        <div>
-          <SunIcon size={20} className="sun-icon" color="#facc15" />
-          <p>
-            <span>8</span>hr
-          </p>
-        </div>
+      <div>
+        <p>
+          Wind
+          <br />
+          <span>{windSpeed !== undefined ? `${windSpeed} km/h` : "--"}</span>
+        </p>
       </div>
     </section>
   );
