@@ -13,7 +13,7 @@ The internship focuses on practical web development through basic, intermediate,
 | Level 1 | Task 1 | Bright Future Academy          | Completed   |
 | Level 1 | Task 2 | StudentHub Registration Portal | Completed   |
 | Level 2 | Task 1 | To-Do List App                 | Completed   |
-| Level 2 | Task 2 | Coming Soon                    | In Progress |
+| Level 2 | Task 2 | React Weather App              | Completed   |
 | Level 3 | Task 1 | Coming Soon                    | Not Started |
 | Level 3 | Task 2 | Coming Soon                    | Not Started |
 
@@ -65,9 +65,17 @@ A responsive to-do list application built with HTML, CSS, and JavaScript
 
 ---
 
-## Task 2 — Coming Soon
+## Task 2 — React Weather App
 
-**Status:** In Progress
+A responsive weather application built with React that allows users to search for a city and view current weather conditions, weather details, hourly forecasts, and a 7-day forecast.
+
+**Technologies:** React, JavaScript, CSS3, CSS Grid, Flexbox, Open-Meteo API, Lucide React
+
+**Features:** City search, form validation, geocoding, current weather data, temperature, humidity, feels-like temperature, wind speed, hourly forecast, 7-day forecast, API error handling, reusable React components, and responsive design.
+
+**API:** Open-Meteo Weather API and Geocoding API
+
+**Status:** Completed
 
 ---
 
@@ -88,13 +96,17 @@ A responsive to-do list application built with HTML, CSS, and JavaScript
 - HTML5
 - CSS3
 - JavaScript
+- React
 - Responsive Web Design
 - CSS Grid
 - Flexbox
 - Web Accessibility
 - SEO
+- REST API Integration
 - Git & GitHub
 - Frontend Development
+- Component-Based Development
+- Local Storage
 
 ---
 
