@@ -25,13 +25,15 @@ section {
   margin-bottom: 1.5rem;
 }
 .search-input {
+  margin-bottom: 1rem;
+}
+.search-input > div {
   display: flex;
   align-items: center;
   position: relative;
-  margin-bottom: 2rem;
 }
 
-.search-input input {
+.search-input > div input {
   width: 100%;
   flex: 1;
   padding: 0.85rem 1rem 0.85rem 3rem;
@@ -42,17 +44,22 @@ section {
   font-size: 1rem;
   color: var(--main-text);
 }
-.search-input input:focus {
+.search-input > div input:focus {
   border-color: var(--ui-icon);
 }
-.search-input input::placeholder {
+.search-input > div input::placeholder {
   color: var(--muted-text);
 }
-.search-input .search-icon {
+.search-input > div .search-icon {
   position: absolute;
-  top: 0.7rem;
+  top: 0.85rem;
   left: 1rem;
   color: var(--ui-icon);
+}
+.search-input > p {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin: 6px 0 0 8px;
 }
 
 .country {
@@ -139,7 +146,9 @@ section {
   align-items: center;
   padding: 1rem 0.5rem;
   scrollbar-width: none;
-  --webkit-scrollbar-width: none;
+}
+.weather-forecast::-webkit-scrollbar {
+  display: none;
 }
 .forecast-info {
   flex: 0 0 85px;
@@ -222,4 +231,70 @@ section {
   font-size: 0.85rem;
   font-weight: 600;
   text-align: right;
+}
+.forecast-icon {
+  font-size: 1.5rem !important;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  main {
+    max-width: 700px;
+    margin: 1rem auto;
+  }
+
+  .weather-icon {
+    width: 150px;
+    height: 150px;
+  }
+
+  .weather-details h1 {
+    font-size: 5rem;
+  }
+
+  .weather-details-grid {
+    gap: 1rem;
+  }
+
+  .forecast-info {
+    flex-basis: 100px;
+  }
+
+  .daily-info {
+    grid-template-columns: 1fr auto 1fr 1fr;
+    padding: 1.1rem 1.5rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  main {
+    max-width: 900px;
+  }
+
+  .header {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .weather-details-grid {
+    margin: 3rem 0;
+  }
+
+  .weather-forecast {
+    gap: 1rem;
+  }
+
+  .forecast-info {
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .daily-forecast {
+    gap: 1rem;
+  }
+
+  .daily-info {
+    padding: 1.2rem 1.5rem;
+  }
 }
