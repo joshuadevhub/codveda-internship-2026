@@ -17,8 +17,8 @@ app.get("/", (req, res) => {
 
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
-  if(!validateName(name, res)) return;
-  if(!(await validateEmail(email, res))) return;
+  if (!validateName(name, res)) return;
+  if (!(await validateEmail(email, res))) return;
   if (!validatePassword(password, res)) return;
   const hashedPassword = await hashPassword(password);
 
@@ -31,33 +31,55 @@ app.post("/register", async (req, res) => {
   await registerUser(newUser, res);
 });
 
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  const existingUser = await getUser(email);
+  if (existingUser === null) {
+    res
+      .status(401)
+      .send({ success: false, message: "Invalid email or password" });
+    return;
+  }
+  const userPassword = await comparePassword(password, existingUser);
+  if (!userPassword) {
+    res
+      .status(401)
+      .send({ success: false, message: "Invalid email or password" });
+    return;
+  }
+  res.status(200).send({ success: true, message: "User is logged in" });
+});
+
 async function registerUser(userModel, res) {
   try {
     await userModel.save();
-    res
-      .status(201)
-      .send({
-        success: true,
-        result: userModel,
-        message: "Registration is successful",
-      });
+    res.status(201).send({
+      success: true,
+      result: userModel,
+      message: "Registration is successful",
+    });
   } catch (err) {
-    console.log(err.message);
     return res.status(500).send({ success: false, message: err.message });
   }
 }
 function validateName(name, res) {
   if (name == null || name == undefined) {
-    res
-      .status(400)
-      .send({ success: false, message: "Name is required" });
+    res.status(400).send({ success: false, message: "Name is required" });
     return false;
   }
 
   if (name === "") {
+    res.status(400).send({ success: false, message: "Name cannot be empty" });
+    return false;
+  }
+
+  if (name.length < 3) {
     res
       .status(400)
-      .send({ success: false, message: "Name cannot be empty" });
+      .send({
+        success: false,
+        message: "Name should contain at least 3 characters",
+      });
     return false;
   }
   return true;
@@ -67,21 +89,22 @@ async function validateEmail(email, res) {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (email == null || email == undefined) {
-    res
-      .status(400)
-      .send({ success: false, message: "Email is required" });
+    res.status(400).send({ success: false, message: "Email is required" });
     return false;
   }
 
   if (email === "") {
-    res
-      .status(400)
-      .send({ success: false, message: "Email cannot be empty" });
+    res.status(400).send({ success: false, message: "Email cannot be empty" });
     return false;
   }
 
   if (!emailRegex.test(email)) {
-    res.status(400).send({ success: false, message: "Please provide a valid email address" });
+    res
+      .status(400)
+      .send({
+        success: false,
+        message: "Please provide a valid email address",
+      });
     return false;
   }
 
@@ -97,10 +120,11 @@ async function validateEmail(email, res) {
 }
 
 function validatePassword(password, res) {
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  
   if (password == null || password == undefined) {
-    res
-      .status(400)
-      .send({ success: false, message: "Password is required" });
+    res.status(400).send({ success: false, message: "Password is required" });
     return false;
   }
 
@@ -108,6 +132,17 @@ function validatePassword(password, res) {
     res
       .status(400)
       .send({ success: false, message: "Password cannot be empty" });
+    return false;
+  }
+
+  if (!passwordRegex.test(password)) {
+    res
+      .status(400)
+      .send({
+        success: false,
+        message:
+          "Password must have at least 8 characters, one uppercase, one lowercase, one number and one special character",
+      });
     return false;
   }
   return true;
@@ -119,6 +154,11 @@ async function getUser(studentEmail) {
 
 async function hashPassword(password) {
   return await bcrypt.hash(password, 10);
+}
+
+async function comparePassword(password, userObj) {
+  const isMatch = await bcrypt.compare(password, userObj.password);
+  return isMatch;
 }
 
 function handleError(error) {
