@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const { User } = require("./models/user");
+const bcrypt = require("bcrypt");
 
 dotenv.config();
 const app = express();
@@ -18,12 +19,13 @@ app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
   if(!validateName(name, res)) return;
   if(!(await validateEmail(email, res))) return;
-  if(!validatePassword(password, res)) return;
+  if (!validatePassword(password, res)) return;
+  const hashedPassword = await hashPassword(password);
 
   const newUser = new User({
     name: name,
     email: email,
-    password: password,
+    password: hashedPassword,
     createdAt: new Date().toISOString(),
   });
   await registerUser(newUser, res);
@@ -113,6 +115,10 @@ function validatePassword(password, res) {
 
 async function getUser(studentEmail) {
   return await User.findOne({ email: studentEmail });
+}
+
+async function hashPassword(password) {
+  return await bcrypt.hash(password, 10);
 }
 
 function handleError(error) {
