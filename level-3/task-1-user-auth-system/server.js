@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const { User } = require("./models/user");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const authMiddleware = require("./middlewares/authMiddleware");
 
 dotenv.config();
 const app = express();
@@ -47,7 +49,18 @@ app.post("/login", async (req, res) => {
       .send({ success: false, message: "Invalid email or password" });
     return;
   }
-  res.status(200).send({ success: true, message: "User is logged in" });
+  const payload = {
+    userId: existingUser._id,
+    email: existingUser.email,
+  }
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+  res.status(200).send({ success: true, message: "User is logged in", token });
+});
+
+app.get("/get-auth", authMiddleware, (req, res) => {
+  const { id, email } = req.data;
+  console.log(id, email);
+  res.status(200).send({success: true, message: "Middleware Received"});
 });
 
 async function registerUser(userModel, res) {
