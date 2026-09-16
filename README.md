@@ -14,7 +14,7 @@ The internship focuses on practical web development through basic, intermediate,
 | Level 1 | Task 2 | StudentHub Registration Portal | Completed   |
 | Level 2 | Task 1 | To-Do List App                 | Completed   |
 | Level 2 | Task 2 | React Weather App              | Completed   |
-| Level 3 | Task 1 | Coming Soon                    | Not Started |
+| Level 3 | Task 1 | User Authentication System     | Completed   |
 | Level 3 | Task 2 | Coming Soon                    | Not Started |
 
 ---
@@ -81,9 +81,20 @@ A responsive weather application built with React that allows users to search fo
 
 # Level 3 — Advanced Web Development
 
-## Task 1 — Coming Soon
+## Task 1 — User Authentication System
 
-**Status:** Not Started
+A backend authentication system built with Node.js and Express that provides user registration, login, password hashing, JWT authentication, protected routes, and role-based authorization.
+
+**Technologies:** Node.js, Express.js, MongoDB, Mongoose, JWT, bcrypt, dotenv
+
+**Features:** User registration, User login, Input validation, Duplicate email detection, Password hashing with bcrypt, JWT generation and verification, Protected routes, Authentication middleware, Role-based authorization, Admin-only route protection, Token expiration handling, HTTP status handling for authentication and authorization errors
+
+**Authentication:** JSON Web Tokens (JWT)
+
+**Database:** MongoDB Atlas
+
+**Status:** Completed
+
 
 ## Task 2 — Coming Soon
 
@@ -97,6 +108,14 @@ A responsive weather application built with React that allows users to search fo
 - CSS3
 - JavaScript
 - React
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- Password Hashing
+- Role-Based Authorization
+- Rest API Development
 - Responsive Web Design
 - CSS Grid
 - Flexbox
@@ -105,8 +124,10 @@ A responsive weather application built with React that allows users to search fo
 - REST API Integration
 - Git & GitHub
 - Frontend Development
+- Backend Development
 - Component-Based Development
 - Local Storage
+- Environment Variables
 
 ---
 
