@@ -18,7 +18,8 @@ function authMiddleware(req, res, next) {
     const decoded = jwt.verify(splitAuth, process.env.JWT_SECRET);
     req.data = {
       id: decoded.userId,
-      email: decoded.email
+      email: decoded.email,
+      role: decoded.role,
     };
   } catch (err) {
     res.status(401).send({ success: false, message: err.message });

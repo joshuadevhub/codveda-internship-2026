@@ -5,6 +5,7 @@ const { User } = require("./models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("./middlewares/authMiddleware");
+const adminAuth = require("./middlewares/adminAuth");
 
 dotenv.config();
 const app = express();
@@ -25,6 +26,7 @@ app.post("/register", async (req, res) => {
   const hashedPassword = await hashPassword(password);
 
   const newUser = new User({
+    // role,
     name: name,
     email: email,
     password: hashedPassword,
@@ -52,15 +54,15 @@ app.post("/login", async (req, res) => {
   const payload = {
     userId: existingUser._id,
     email: existingUser.email,
+    role: existingUser.role
   }
   const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
   res.status(200).send({ success: true, message: "User is logged in", token });
 });
 
-app.get("/get-auth", authMiddleware, (req, res) => {
-  const { id, email } = req.data;
-  console.log(id, email);
-  res.status(200).send({success: true, message: "Middleware Received"});
+app.get("/get-auth", authMiddleware, adminAuth, (req, res) => {
+  const { id, email, role } = req.data;
+  res.status(200).send({success: true, message: "Admin Logged In"});
 });
 
 async function registerUser(userModel, res) {
