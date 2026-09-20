@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const router = require("./routes/studentRoutes")
-const { pool } = require("./database/database");
+const validateStudent = require("./middleware/studentValidation");
 
 const app = express();
 
