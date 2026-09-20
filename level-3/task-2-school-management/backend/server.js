@@ -77,4 +77,26 @@ app.put("/api/students/:id", async(req, res) => {
     return;
   }
 });
+
+app.delete("/api/students/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const query = {
+      text: 'DELETE FROM students WHERE id = $1 RETURNING *',
+      values: [id],
+    }
+
+    const response = await pool.query(query);
+    if (response.rows.length === 0) {
+      res.status(404).send({ success: false, message: "Student does not exist" });
+      return false;
+    }
+    res.status(200).send({ success: true, message: "Student deleted successfully" });
+  } catch (err) {
+    res.status(400).send({ success: false, message: err.message });
+    return;
+  }
+});
+
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
