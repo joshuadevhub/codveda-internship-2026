@@ -39,7 +39,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", validateStudent, async (req, res) => {
+router.post("/", validateStudent, async (req, res, next) => {
   try {
     const {
       student_id,
@@ -77,7 +77,9 @@ router.post("/", validateStudent, async (req, res) => {
       });
     return;
   } catch (err) {
-    res.status(400).send({ success: false, message: err.message });
+    // console.log(err);
+    // res.status(400).send({ success: false, message: err.message });
+    return next(err);
   }
 });
 

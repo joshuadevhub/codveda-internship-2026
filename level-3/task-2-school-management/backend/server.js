@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const router = require("./routes/studentRoutes")
 const validateStudent = require("./middleware/studentValidation");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -12,4 +13,5 @@ const PORT = process.env.PORT || 5000;
 
 app.use("/api/students", router);
 
+app.use(errorHandler);
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
