@@ -82,6 +82,11 @@ function errorHandler(err, req, res, next) {
         res.status(400).send({ success: false, message: "Please provide a registration date for the teacher" });
         return;
       }
+
+      if (err.column === "gender" && err.table === "teachers") {
+        res.status(400).send({ success: false, message: "Gender is required" });
+        return;
+      }
       break;
     
     case "23514":
