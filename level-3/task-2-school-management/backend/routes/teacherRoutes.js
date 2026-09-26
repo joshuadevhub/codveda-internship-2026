@@ -44,7 +44,7 @@ router.post("/", async (req, res, next) => {
     res.status(201).send({ success: true, message: "Teacher created successfully", results: response.rows });
     return;
   } catch (err) {
-    return next(err)
+    return next(err);
   }
 });
 
