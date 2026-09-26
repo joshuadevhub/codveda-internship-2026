@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { pool } = require("../database/database");
+const validateTeacher = require("../middleware/teacherValidation");
 
 router.get('/', async (req, res, next) => {
   try {
@@ -30,7 +31,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", validateTeacher, async (req, res, next) => {
   try {
     const { teacher_id, first_name, last_name, email, phone, gender, date_of_birth, date_registered,
     } = req.body;
