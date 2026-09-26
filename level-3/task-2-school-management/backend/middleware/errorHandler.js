@@ -87,6 +87,11 @@ function errorHandler(err, req, res, next) {
         res.status(400).send({ success: false, message: "Gender is required" });
         return;
       }
+
+      if (err.column === "date_of_birth" && err.table === "teachers") {
+        res.status(400).send({ success: false, message: "Date of birth is required" });
+        return false;
+      }
       break;
     
     case "23514":
