@@ -88,6 +88,11 @@ function errorHandler(err, req, res, next) {
         return;
       }
 
+      if (err.column === "employment_type" && err.table === "teachers") {
+        res.status(400).send({ success: false, message: "Employment type is required" });
+        return false;
+      }
+
       if (err.column === "date_of_birth" && err.table === "teachers") {
         res.status(400).send({ success: false, message: "Date of birth is required" });
         return false;
@@ -113,6 +118,11 @@ function errorHandler(err, req, res, next) {
       if (err.constraint === "teachers_gender_check" && err.table === "teachers") {
         res.status(400).send({ success: false, message: "Invalid gender value for teacher. Allowed values are: male and female" });
         return;
+      }
+
+      if (err.constraint === "teachers_employment_type_check" && err.table === "teachers") {
+        res.status(400).send({ success: false, message: "Invalid employment type. Allowed values are: Part-time and Full-time" });
+        return false;
       }
       break;
     

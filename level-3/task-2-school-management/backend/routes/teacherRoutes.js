@@ -33,12 +33,12 @@ router.get('/:id', async (req, res, next) => {
 
 router.post("/", validateTeacher, async (req, res, next) => {
   try {
-    const { teacher_id, first_name, last_name, email, phone, gender, date_of_birth, date_registered,
+    const { teacher_id, first_name, last_name, email, phone, gender, employment_type, date_of_birth, date_registered,
     } = req.body;
 
     const query = {
-      text: "INSERT INTO teachers (teacher_id, first_name, last_name, email, phone, gender, date_of_birth, date_registered) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
-      values: [teacher_id, first_name, last_name, email, phone, gender, date_of_birth, date_registered],
+      text: "INSERT INTO teachers (teacher_id, first_name, last_name, email, phone, gender, employment_type, date_of_birth, date_registered) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+      values: [teacher_id, first_name, last_name, email, phone, gender, employment_type, date_of_birth, date_registered],
     };
 
     const response = await pool.query(query);
@@ -52,12 +52,12 @@ router.post("/", validateTeacher, async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { teacher_id, first_name, last_name, email, phone, gender, date_of_birth, date_registered,
+    const { teacher_id, first_name, last_name, email, phone, gender, employment_type, date_of_birth, date_registered,
     } = req.body;
 
     const query = {
-      text: "UPDATE teachers SET teacher_id = $1, first_name = $2, last_name = $3, email = $4, phone = $5, gender = $6, date_of_birth = $7, date_registered = $8 WHERE id = $9 RETURNING *",
-      values: [teacher_id, first_name, last_name, email, phone, gender, date_of_birth, date_registered, id],
+      text: "UPDATE teachers SET teacher_id = $1, first_name = $2, last_name = $3, email = $4, phone = $5, gender = $6, employment_type = $7, date_of_birth = $8, date_registered = $9 WHERE id = $10 RETURNING *",
+      values: [teacher_id, first_name, last_name, email, phone, gender, employment_type, date_of_birth, date_registered, id],
     };
 
     const response = await pool.query(query);

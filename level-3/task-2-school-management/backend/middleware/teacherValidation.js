@@ -1,5 +1,5 @@
 function validateTeacher(req, res, next) {
-  const { teacher_id, first_name, last_name, email, phone, gender, date_of_birth, date_registered,
+  const { teacher_id, first_name, last_name, email, phone, gender, employment_type, date_of_birth, date_registered,
   } = req.body;
 
   if (!validateTeacherId(teacher_id, res)) return;
@@ -8,6 +8,7 @@ function validateTeacher(req, res, next) {
   if (!validateEmail(email, res)) return;
   if (!validatePhone(phone, res)) return;
   if (!validateGender(gender, res)) return;
+  if (!validateEmploymentType(employment_type, res)) return;
   if (!validateDateOfBirth(date_of_birth, res)) return;
   if (!validateDateRegistered(date_registered, res)) return;
 
@@ -133,6 +134,26 @@ function validateGender(gender, res) {
 
   if (!allowedGender.includes(gender)) {
     res.status(400).send({ success: false, message: `Invalid gender value provided. Allowed gender: ${allowedGender.join(",")}`});
+    return false;
+  }
+  return true;
+}
+
+function validateEmploymentType(employmentType, res) {
+  const allowedEmploymentType = ["Full-time", "Part-time"];
+
+  if (employmentType === null || employmentType === undefined) {
+    res.status(400).send({ success: false, message: "Employment type is required" });
+    return false;
+  }
+
+  if (employmentType.trim() === "") {
+    res.status(400).send({ success: false, message: "Employment type cannot be empty" });
+    return false;
+  }
+
+  if (!allowedEmploymentType.includes(employmentType)) {
+    res.status(400).send({ success: false, message: `Invalid employment type provided. Allowed employment type: ${allowedEmploymentType.join(",")}`});
     return false;
   }
   return true;
