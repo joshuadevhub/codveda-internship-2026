@@ -105,19 +105,25 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
-  const { id } = req.params;
-  const query = {
-    text: 'DELETE FROM teacher_class_assignments WHERE id = $1 RETURNING *',
-    values: [id]
-  };
-  const response = await pool.query(query);
-  if (response.rows.length === 0) {
-    res.status(404).send({ success: false, message: 'Teacher assignment ID not found' });
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const query = {
+      text: "DELETE FROM teacher_class_assignments WHERE id = $1 RETURNING *",
+      values: [id],
+    };
+    const response = await pool.query(query);
+    if (response.rows.length === 0) {
+      res
+        .status(404)
+        .send({ success: false, message: "Teacher assignment ID not found" });
+      return;
+    }
+    res.status(204).send();
     return;
+  } catch (err) {
+    return next(err);
   }
-  res.status(204).send();
-  return;
 });
 
 module.exports = router;
