@@ -3,8 +3,40 @@ const router = express.Router();
 const { pool } = require("../database/database");
 const validateStudent = require("../middleware/studentValidation");
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   try {
+    const { gender, search } = req.query;
+
+    if (gender && search) {
+      const genderSearchQuery = {
+        text: 'SELECT * FROM students WHERE gender = $1 AND (first_name ILIKE $2 OR last_name ILIKE $2) ORDER BY id',
+        values: [gender, `%${search}%`]
+      }
+      const genderSearchResponse = await pool.query(genderSearchQuery);
+      res.status(200).send({ success: true, message: "Students fetched", results: genderSearchResponse.rows });
+      return;
+    }
+
+    if (gender) {
+      const genderQuery = {
+        text: 'SELECT * FROM students WHERE gender = $1',
+        values: [gender]
+      }
+      const genderResponse = await pool.query(genderQuery);
+      res.status(200).send({ success: true, message: `${gender} student fetched`, results: genderResponse.rows });
+      return;
+    }
+
+    if (search) {
+      const searchQuery = {
+        text: 'SELECT * FROM students WHERE first_name ILIKE $1 OR last_name ILIKE $1',
+        values: [`%${search}%`]
+      }
+      const searchResponse = await pool.query(searchQuery);
+      res.status(200).send({ success: true, message: `Search result for ${search}`, results: searchResponse.rows });
+      return;
+    }
+
     const response = await pool.query("SELECT * FROM students");
     res
       .status(200)
@@ -14,8 +46,7 @@ router.get("/", async (req, res) => {
         results: response.rows,
       });
   } catch (err) {
-    res.status(400).send({ success: false, message: err.message });
-    return false;
+    return next(err);
   }
 });
 
