@@ -1,5 +1,4 @@
 function errorHandler(err, req, res, next) {
-  let statusCode;
   switch (err.code) {
     case "23505":
       if (err.constraint === "students_student_id_key") {
@@ -38,7 +37,7 @@ function errorHandler(err, req, res, next) {
         return;
       }
       if (err.constraint === "teacher_class_assignments_class_id_fkey") {
-        res.status(404).send({ success: false, message: "The teacher class ID provided does not exist" });
+        res.status(404).send({ success: false, message: "The class ID provided does not exist" });
         return;
       }
       break;
@@ -155,9 +154,10 @@ function errorHandler(err, req, res, next) {
       break;
     
     default:
+      res.status(500).send({ success: false, message: "Internal server error. Please try again later" });
+      console.log(err);
       break;
   }
-  next(err);
 }
 
 module.exports = errorHandler;
