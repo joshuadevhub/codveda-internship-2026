@@ -4,6 +4,7 @@ const studentRouter = require("./routes/studentRoutes");
 const teacherRouter = require("./routes/teacherRoutes");
 const teacherAssignmentRouter = require("./routes/teacherAssignmentRoutes");
 const classRouter = require("./routes/classRoutes");
+const subjectRouter = require("./routes/subjectRoutes");
 const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
@@ -17,6 +18,7 @@ app.use("/api/students", studentRouter);
 app.use("/api/teachers", teacherRouter);
 app.use("/api/teacher-assignments", teacherAssignmentRouter);
 app.use("/api/classes", classRouter);
+app.use("/api/subjects", subjectRouter);
 
 app.use(errorHandler);
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
