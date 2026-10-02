@@ -31,17 +31,18 @@ router.post("/", validateTeacherAssignment, async (req, res, next) => {
     };
 
     const teacherResponse = await pool.query(teacherQuery);
-    if (teacherResponse.rows.length === 0) {
+    const currentTeacher = teacherResponse.rows;
+    if (currentTeacher.length === 0) {
       res.status(404).send({ success: false, message: "Teacher not found" });
       return;
     }
 
-    if (teacherResponse.rows[0].employment_type === "Part-time") {
+    if (currentTeacher[0].employment_type === "Part-time" || currentTeacher[0].employment_status !== "Active") {
       res
         .status(400)
         .send({
           success: false,
-          message: "Part-time teachers cannot be assigned to a class",
+          message: "This teacher cannot be assigned to a class",
         });
       return;
     }
