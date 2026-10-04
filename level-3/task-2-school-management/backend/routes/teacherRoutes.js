@@ -80,7 +80,7 @@ router.post("/", validateTeacher, async (req, res, next) => {
   }
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", validateTeacher, async (req, res, next) => {
   try {
     const { id } = req.params;
     const {

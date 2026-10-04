@@ -64,7 +64,7 @@ router.get("/:id", async (req, res) => {
       res.status(404).send({ success: false, message: "Student not found" });
       return false;
     }
-    res.status(200).send({ success: true, message: "Student retrieved successfully", result: response.rows });
+    res.status(200).send({ success: true, message: "Student retrieved successfully", results: response.rows });
   } catch (err) {
     res.status(400).send({ success: false, message: err.message });
   }
@@ -108,21 +108,19 @@ router.post("/", validateStudent, async (req, res, next) => {
       });
     return;
   } catch (err) {
-    // console.log(err);
-    // res.status(400).send({ success: false, message: err.message });
     return next(err);
   }
 });
 
-router.put("/:id", async(req, res) => {
+router.put("/:id", validateStudent, async(req, res, next) => {
   try {
     const { id } = req.params;
 
-    const { student_id, first_name, last_name, email, phone, date_of_birth, gender, class_id, date_registered } = req.body;
+    const { first_name, last_name, email, phone, date_of_birth, gender, class_id } = req.body;
 
     const query = {
-      text: 'UPDATE students SET student_id = $1, first_name = $2, last_name = $3, email = $4, phone = $5, date_of_birth = $6, gender = $7, class_id = $8, date_registered = $9 WHERE id = $10 RETURNING *',
-      values: [student_id, first_name, last_name, email, phone, date_of_birth, gender, class_id, date_registered, id],
+      text: 'UPDATE students SET first_name = $1, last_name = $2, email = $3, phone = $4, date_of_birth = $5, gender = $6, class_id = $7 WHERE id = $8 RETURNING *',
+      values: [first_name, last_name, email, phone, date_of_birth, gender, class_id, id],
     }
     const response = await pool.query(query);
     if (response.rows.length === 0) {
@@ -131,8 +129,7 @@ router.put("/:id", async(req, res) => {
     }
     res.status(200).send({ success: true, message: "Student updated successfully", results: response.rows });
   } catch (err) {
-    res.status(400).send({ success: false, message: err.message });
-    return;
+    return next(err);
   }
 });
 

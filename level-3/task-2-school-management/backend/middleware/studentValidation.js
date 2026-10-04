@@ -1,7 +1,7 @@
 function studentValidation(req, res, next) {
   const { student_id, first_name, last_name, email, phone, date_of_birth, gender, class_id, date_registered } = req.body;
 
-  if (!validateStudentId(student_id, res)) return;
+  if (!validateStudentId(student_id, req, res)) return;
   if (!validateName(first_name, res, "First Name")) return;
   if (!validateName(last_name, res, "Last Name")) return;
   if (!validateEmail(email, res)) return;
@@ -14,20 +14,57 @@ function studentValidation(req, res, next) {
   next();
 }
 
-function validateStudentId(studentId, res) {
-  if (studentId === undefined || studentId === null) {
-    res.status(400).send({ success: false, message: "Student ID is required" });
-    return false;
-  }
+function validateStudentId(studentId, req, res) {
+  if (req.method === "POST") {
+    if (studentId === null || studentId === undefined) {
+      res
+        .status(400)
+        .send({ success: false, message: "Student ID is required" });
+      return false;
+    }
 
-  if (studentId.trim() === "") {
-    res.status(400).send({ success: false, message: "Student ID cannot be empty" });
-    return false;
-  }
+    if (studentId.trim() === "") {
+      res
+        .status(400)
+        .send({ success: false, message: "Student ID cannot be empty" });
+      return false;
+    }
 
-  if (studentId.length !== 12) {
-    res.status(400).send({ success: false, message: "Student ID cannot be more or less than 12 characters"});
-    return false;
+    if (studentId.length !== 12) {
+      res
+        .status(400)
+        .send({ success: false, message: "Invalid student ID format" });
+      return false;
+    }
+
+    const splitStudentId = studentId.split("-");
+    const message = "Invalid student ID format";
+    const todayYear = new Date().getFullYear();
+
+    if (splitStudentId[0] !== "DBS") {
+      res.status(400).send({ success: false, message });
+      return false;
+    }
+
+    if (Number(splitStudentId[1]) !== todayYear) {
+      res.status(400).send({ success: false, message });
+      return false;
+    }
+
+    if (splitStudentId[2].length !== 3) {
+      res.status(400).send({ success: false, message });
+      return false;
+    }
+
+    for (let i = 0; i < splitStudentId[2].length; i++) {
+      const char = splitStudentId[2][i];
+      if (char < "0" || char > "9") {
+        res.status(400).send({ success: false, message });
+        return false;
+      }
+    }
+
+    return true;
   }
   return true;
 }
@@ -142,18 +179,18 @@ function validateDateOfBirth(dob, res) {
 }
 
 function validateGender(gender, res) {
-  const allowedGender = ["male", "female"];
+  const allowedGender = ["Male", "Female"];
   if (gender === undefined || gender === null) {
     res.status(400).send({ success: false, message: "Gender is required" });
     return false;
   }
 
-  if (gender === "") {
+  if (gender.trim() === "") {
     res.status(400).send({ success: false, message: "Gender cannot be empty" });
     return false;
   }
 
-  if (!allowedGender.includes(gender.toLowerCase())) { 
+  if (!allowedGender.includes(gender)) { 
     res.status(400).send({ success: false, message: `Invalid gender value provided. Allowed gender: ${allowedGender.join(",")}` });
     return false;
   }

@@ -66,7 +66,7 @@ router.post("/", validateTeacherAssignment, async (req, res, next) => {
   }
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", validateTeacherAssignment, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { teacher_id, class_id, assigned_date } = req.body;
