@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const dotenv = require("dotenv");
 const studentRouter = require("./routes/studentRoutes");
 const teacherRouter = require("./routes/teacherRoutes");
@@ -10,6 +11,13 @@ const errorHandler = require("./middleware/errorHandler");
 const app = express();
 
 dotenv.config();
+
+const corsOptions = {
+  origin: process.env.COR_ORIGIN,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
