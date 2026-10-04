@@ -84,7 +84,6 @@ router.put("/:id", validateTeacher, async (req, res, next) => {
   try {
     const { id } = req.params;
     const {
-      teacher_id,
       first_name,
       last_name,
       email,
@@ -92,13 +91,11 @@ router.put("/:id", validateTeacher, async (req, res, next) => {
       gender,
       employment_type,
       date_of_birth,
-      date_registered,
     } = req.body;
 
     const query = {
-      text: "UPDATE teachers SET teacher_id = $1, first_name = $2, last_name = $3, email = $4, phone = $5, gender = $6, employment_type = $7, date_of_birth = $8, date_registered = $9 WHERE id = $10 RETURNING *",
+      text: "UPDATE teachers SET first_name = $1, last_name = $2, email = $3, phone = $4, gender = $5, employment_type = $6, date_of_birth = $7 WHERE id = $8 RETURNING *",
       values: [
-        teacher_id,
         first_name,
         last_name,
         email,
@@ -106,7 +103,6 @@ router.put("/:id", validateTeacher, async (req, res, next) => {
         gender,
         employment_type,
         date_of_birth,
-        date_registered,
         id,
       ],
     };

@@ -9,7 +9,7 @@ function studentValidation(req, res, next) {
   if (!validateDateOfBirth(date_of_birth, res)) return;
   if (!validateGender(gender, res)) return;
   if (!validateClassId(class_id, res)) return;
-  if (!validateDateRegistered(date_registered, res)) return;
+  if (!validateDateRegistered(date_registered, req, res)) return;
 
   next();
 }
@@ -222,43 +222,46 @@ function validateClassId(classId, res) {
   return true;
 }
 
-function validateDateRegistered(dateRegistered, res) {
-  if (dateRegistered === undefined || dateRegistered === null) {
-    res.status(400).send({
-      success: false,
-      message: "Date registered is required",
-    });
-    return false;
+function validateDateRegistered(dateRegistered, req, res) {
+  if (req.method === "POST") {
+    if (dateRegistered === undefined || dateRegistered === null) {
+      res.status(400).send({
+        success: false,
+        message: "Date registered is required",
+      });
+      return false;
+    }
+
+    if (dateRegistered === "") {
+      res.status(400).send({
+        success: false,
+        message: "Date registered cannot be empty",
+      });
+      return false;
+    }
+
+    const registeredDate = new Date(dateRegistered);
+
+    if (Number.isNaN(registeredDate.getTime())) {
+      res.status(400).send({
+        success: false,
+        message: "Enter a valid registration date",
+      });
+      return false;
+    }
+
+    const today = new Date();
+
+    if (registeredDate > today) {
+      res.status(400).send({
+        success: false,
+        message: "Registration date cannot be in the future",
+      });
+      return false;
+    }
+
+    return true;
   }
-
-  if (dateRegistered === "") {
-    res.status(400).send({
-      success: false,
-      message: "Date registered cannot be empty",
-    });
-    return false;
-  }
-
-  const registeredDate = new Date(dateRegistered);
-
-  if (Number.isNaN(registeredDate.getTime())) {
-    res.status(400).send({
-      success: false,
-      message: "Enter a valid registration date",
-    });
-    return false;
-  }
-
-  const today = new Date();
-
-  if (registeredDate > today) {
-    res.status(400).send({
-      success: false,
-      message: "Registration date cannot be in the future",
-    });
-    return false;
-  }
-
   return true;
 }
 

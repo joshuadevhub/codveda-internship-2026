@@ -2,7 +2,7 @@ function validateTeacher(req, res, next) {
   const { teacher_id, first_name, last_name, email, phone, gender, employment_type, date_of_birth, date_registered,
   } = req.body;
 
-  if (!validateTeacherId(teacher_id, res)) return;
+  if (!validateTeacherId(teacher_id, req, res)) return;
   if (!validateName(first_name, res, "First name")) return;
   if (!validateName(last_name, res, "Last name")) return;
   if (!validateEmail(email, res)) return;
@@ -10,54 +10,63 @@ function validateTeacher(req, res, next) {
   if (!validateGender(gender, res)) return;
   if (!validateEmploymentType(employment_type, res)) return;
   if (!validateDateOfBirth(date_of_birth, res)) return;
-  if (!validateDateRegistered(date_registered, res)) return;
+  if (!validateDateRegistered(date_registered, req, res)) return;
 
   next();
 }
 
-function validateTeacherId(teacherId, res) {
-  if (teacherId === null || teacherId === undefined) {
-    res.status(400).send({ success: false, message: "Teacher ID is required" });
-    return false;
-  }
+function validateTeacherId(teacherId, req, res) {
+  if (req.method === "POST") {
+    if (teacherId === null || teacherId === undefined) {
+      res
+        .status(400)
+        .send({ success: false, message: "Teacher ID is required" });
+      return false;
+    }
 
-  if (teacherId.trim() === "") {
-    res.status(400).send({ success: false, message: "Teacher ID cannot be empty" });
-    return false;
-  }
+    if (teacherId.trim() === "") {
+      res
+        .status(400)
+        .send({ success: false, message: "Teacher ID cannot be empty" });
+      return false;
+    }
 
-  if (teacherId.length !== 12) {
-    res.status(400).send({ success: false, message: "Invalid teacher ID format" });
-    return false;
-  }
+    if (teacherId.length !== 12) {
+      res
+        .status(400)
+        .send({ success: false, message: "Invalid teacher ID format" });
+      return false;
+    }
 
-  const splitTeacherId = teacherId.split("-");
-  const message = "Invalid teacher ID format"
-  const todayYear = new Date().getFullYear();
+    const splitTeacherId = teacherId.split("-");
+    const message = "Invalid teacher ID format";
+    const todayYear = new Date().getFullYear();
 
-  if (splitTeacherId[0] !== 'TCH') {
-    res.status(400).send({ success: false, message  });
-    return false;
-  }
-
-  if (Number(splitTeacherId[1]) !== todayYear) {
-    res.status(400).send({ success: false, message });
-    return false;
-  }
-
-  if (splitTeacherId[2].length !== 3) {
-    res.status(400).send({ success: false, message });
-    return false;
-  }
-
-  for (let i = 0; i < splitTeacherId[2].length; i++) {
-    const char = splitTeacherId[2][i];
-    if (char < "0" || char > "9") {
+    if (splitTeacherId[0] !== "TCH") {
       res.status(400).send({ success: false, message });
       return false;
     }
-  }
 
+    if (Number(splitTeacherId[1]) !== todayYear) {
+      res.status(400).send({ success: false, message });
+      return false;
+    }
+
+    if (splitTeacherId[2].length !== 3) {
+      res.status(400).send({ success: false, message });
+      return false;
+    }
+
+    for (let i = 0; i < splitTeacherId[2].length; i++) {
+      const char = splitTeacherId[2][i];
+      if (char < "0" || char > "9") {
+        res.status(400).send({ success: false, message });
+        return false;
+      }
+    }
+
+    return true;
+  }
   return true;
 }
 
@@ -195,31 +204,45 @@ function validateDateOfBirth(dob, res) {
   return true;
 }
 
-function validateDateRegistered(dateRegistered, res) {
-  if (dateRegistered === undefined || dateRegistered === null) {
-    res.status(400).send({ success: false, message: "Date registered is required"});
-    return false;
+function validateDateRegistered(dateRegistered, req, res) {
+  if (req.method === "POST") {
+    if (dateRegistered === undefined || dateRegistered === null) {
+      res
+        .status(400)
+        .send({ success: false, message: "Date registered is required" });
+      return false;
+    }
+
+    if (dateRegistered === "") {
+      res
+        .status(400)
+        .send({ success: false, message: "Date registered cannot be empty" });
+      return false;
+    }
+
+    const registeredDate = new Date(dateRegistered);
+
+    if (Number.isNaN(registeredDate.getTime())) {
+      res
+        .status(400)
+        .send({ success: false, message: "Enter a valid registration date" });
+      return false;
+    }
+
+    const today = new Date();
+
+    if (registeredDate > today) {
+      res
+        .status(400)
+        .send({
+          success: false,
+          message: "Registration date cannot be in the future",
+        });
+      return false;
+    }
+
+    return true;
   }
-
-  if (dateRegistered === "") {
-    res.status(400).send({ success: false, message: "Date registered cannot be empty"});
-    return false;
-  }
-
-  const registeredDate = new Date(dateRegistered);
-
-  if (Number.isNaN(registeredDate.getTime())) {
-    res.status(400).send({ success: false, message: "Enter a valid registration date"});
-    return false;
-  }
-
-  const today = new Date();
-
-  if (registeredDate > today) {
-    res.status(400).send({ success: false, message: "Registration date cannot be in the future"});
-    return false;
-  }
-
   return true;
 }
 
