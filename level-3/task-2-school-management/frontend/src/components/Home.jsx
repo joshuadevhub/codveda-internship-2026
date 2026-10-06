@@ -1,19 +1,37 @@
 import { Link } from "react-router-dom";
+import {Menu} from 'lucide-react'
 
 export function Home() {
   return (
     <>
       <header>
-        <h1>Daybreak Model College</h1>
+        <span className="logo">Daybreak Model College</span>
+        <button>
+          <Menu/>
+        </button>
       </header>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea hic deleniti
-        nemo, quam consequuntur officiis adipisci voluptates natus error qui,
-        cumque fugit, veniam culpa numquam. Sit voluptatum molestiae nihil
-        temporibus.
-      </p>
 
-      <Link to={"/login"} className="login"> Login</Link>
+      <main>
+        <section className="hero">
+          <div className="heroContent">
+            <h1>
+              Inspiring Excellence, Building <span>Futures</span>
+            </h1>
+            <p>
+              At DayBreak School, we nurture young minds with strong values,
+              modern learning and boundless opportunities
+            </p>
+            <div className="cta">
+              <Link to={"/registration"} className="register">
+                Admission Open
+              </Link>
+              <Link to={"/login"} className="login">
+                Login
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
     </>
   );
 }

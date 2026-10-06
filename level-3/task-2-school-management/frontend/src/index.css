@@ -1,0 +1,94 @@
+:root {
+  --primary-color: #155A9C;
+  --secondary-color: #0F477D;
+  --accent-color: #2D78BE;
+  --white-color: #FFFFFF;
+  --light-background: #F5F7FA;
+  --text-color: #172033;
+  --muted-text: #5B6575;
+  --gold-accent: #D4AF37;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header{
+  padding: 1rem;
+  background-color: var(--primary-color);
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo{
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--gold-accent);
+}
+header button{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--white-color);
+}
+main{
+  flex: 1;
+}
+.hero{
+  background-image: url("./assets/school-hero.jpg");
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+.hero::before{
+  content: "";
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+}
+.hero .heroContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+}
+.heroContent h1, .heroContent p{
+  text-align: center;
+  color: var(--white-color);
+  margin-bottom: 1.5rem;
+}
+.cta{
+  width: 100%;
+}
+.cta .register, .cta .login{
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  border-radius: 0.7rem;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.cta .register{
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+.cta .login{
+  background-color: var(--light-background);
+  color: var(--primary-color);
+}
