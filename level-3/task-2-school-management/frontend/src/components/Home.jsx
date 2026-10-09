@@ -1,22 +1,38 @@
 import { Link } from "react-router-dom";
-import {Menu} from 'lucide-react'
+import { Menu } from "lucide-react";
+import { Navbar } from "./Navbar";
+import { useState } from "react";
 
 export function Home() {
+  const [menu, setMenu] = useState(false);
+
+  function handleOpenMenu() {
+    setMenu(true);
+  }
+  function handleCloseMenu() {
+    setMenu(false);
+  }
   return (
     <>
       <header>
         <span className="logo">Daybreak Model College</span>
-        <button>
-          <Menu/>
+        <button onClick={handleOpenMenu} className="menu">
+          <Menu />
         </button>
       </header>
+
+      <Navbar openMenu={menu} closeMenu={handleCloseMenu} />
 
       <main>
         <section className="hero">
           <div className="heroContent">
-            <h1>
-              Inspiring Excellence, Building <span>Futures</span>
-            </h1>
+            <div className="heroHeader">
+              <h1>
+                Inspiring Excellence,
+              </h1>
+              <p>Building <span>Futures</span></p>
+            </div>
+
             <p>
               At DayBreak School, we nurture young minds with strong values,
               modern learning and boundless opportunities

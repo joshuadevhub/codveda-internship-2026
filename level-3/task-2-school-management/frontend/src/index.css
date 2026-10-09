@@ -6,7 +6,7 @@
   --light-background: #F5F7FA;
   --text-color: #172033;
   --muted-text: #5B6575;
-  --gold-accent: #D4AF37;
+  /* --gold-accent: #D4AF37; */
 }
 
 *{
@@ -28,13 +28,14 @@ header{
 .logo{
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--gold-accent);
+  color: var(--white-color);
 }
-header button{
+header .menu{
   background-color: transparent;
   border: none;
   outline: none;
   color: var(--white-color);
+  cursor: pointer;
 }
 main{
   flex: 1;
@@ -49,7 +50,7 @@ main{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 7rem 1.5rem 3rem;
   position: relative;
 }
 .hero::before{
@@ -65,9 +66,18 @@ main{
   justify-content: center;
   z-index: 12;
 }
-.heroContent h1, .heroContent p{
+.heroHeader h1, .heroContent p{
   text-align: center;
   color: var(--white-color);
+}
+.heroHeader p{
+  font-size: 2rem;
+  font-weight: bold;
+}
+.heroHeader > p span{
+  color: var(--primary-color);
+}
+.heroContent p{
   margin-bottom: 1.5rem;
 }
 .cta{
@@ -91,4 +101,49 @@ main{
 .cta .login{
   background-color: var(--light-background);
   color: var(--primary-color);
+}
+
+@media (min-width: 760px){
+  header .menu{
+    display: none;
+  }
+  .hero{
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8rem 5% 4rem;
+  }
+  .hero .heroContent{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 55%;
+    max-width: 650px;
+  }
+
+  .heroHeader h1,
+  .heroHeader p {
+  text-align: left;
+  font-size: 2.8rem;
+  line-height: 1.2;
+}
+
+  .heroContent p{
+    text-align: left;
+    max-width: 550px;
+    line-height: 1.5;
+  }
+  .heroContent > p{
+    font-size: 1.3rem;
+
+  }
+  .cta{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .cta .register, .cta .login{
+    white-space: nowrap;
+  }
 }
