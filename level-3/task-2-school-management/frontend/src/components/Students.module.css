@@ -1,0 +1,102 @@
+.main {
+  padding: 3.4rem 1rem 2rem 1rem;
+  background-color: var(--light-background);
+  /* background-color: green; */
+}
+.main .studentHeader {
+  text-align: center;
+  padding-top: 1rem;
+}
+.addStudent {
+  margin-top: 1rem;
+}
+.addStudent > div {
+  display: flex;
+  background-color: var(--primary-color);
+  border: none;
+  outline: none;
+  padding: 0.7rem 1rem;
+  border-radius: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--white-color);
+  gap: 0.4rem;
+}
+.studentContainer {
+  margin-top: 2rem;
+}
+.studentContainer > div:first-child {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+.studentContainer h2 {
+  text-align: center;
+  /* margin-bottom: 1rem; */
+  color: var(--primary-color);
+}
+.studentContainer .input,
+.studentContainer select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--light-background);
+  outline: none;
+  border-radius: 0.6rem;
+  background-color: var(--white-color);
+  color: var(--text-color);
+  transition: border 0.5s ease-in-out;
+}
+.studentContainer .input:focus,
+.studentContainer select:focus {
+  border: 1px solid var(--primary-color);
+}
+.studentContents {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.studentContent {
+  background-color: var(--white-color);
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 10px rgba(21, 90, 156, 0.3);
+  text-align: center;
+  padding: 1rem;
+}
+.image {
+  display: block;
+  margin: 0 auto 1rem auto;
+  width: 70px;
+  height: 70px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+}
+.studentContent h3 {
+  color: var(--text-color);
+}
+.profileLink {
+  margin-top: 1rem;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+@media (min-width: 760px){
+  .main{
+    padding: 4rem 3rem;
+  }
+  .studentContainer > div:first-child{
+    grid-template-columns: 1fr auto auto;
+  }
+  .studentContainer > div:first-child h2{
+    text-align: left;
+  }
+  .studentContents{
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
