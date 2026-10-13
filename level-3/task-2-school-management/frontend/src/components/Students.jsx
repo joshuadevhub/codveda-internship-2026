@@ -25,11 +25,6 @@ export function Students() {
   }
   return (
     <>
-      <header>
-        <span className="logo">Daybreak Model College</span>
-      </header>
-
-      <main className={styles.main}>
         <section className={styles.studentHeader}>
           <h1>Student Lists</h1>
           <p>A complete lists of all students with their details and status</p>
@@ -108,7 +103,6 @@ export function Students() {
             </div>
           </div>
         </section>
-      </main>
     </>
   );
 }
