@@ -37,7 +37,7 @@ router.get("/", async (req, res, next) => {
       return;
     }
 
-    const response = await pool.query("SELECT * FROM students");
+    const response = await pool.query("SELECT students.id, students.student_id, students.first_name, students.last_name, students.email, students.phone, students.class_id, classes.id, classes.name FROM students JOIN classes ON students.class_id = classes.id");
     res
       .status(200)
       .send({
