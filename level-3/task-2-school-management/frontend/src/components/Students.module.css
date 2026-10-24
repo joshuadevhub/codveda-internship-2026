@@ -192,6 +192,11 @@
 .editProfile:hover {
   background-color: #f8fafc;
 }
+.emptyStateMessage{
+  font-size: 0.75rem;
+  color: var(--primary-color);
+  text-align: center;
+}
 
 @media (min-width: 760px){
   .main{
