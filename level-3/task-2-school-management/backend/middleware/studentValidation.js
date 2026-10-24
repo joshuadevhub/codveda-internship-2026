@@ -1,5 +1,15 @@
 function studentValidation(req, res, next) {
-  const { student_id, first_name, last_name, email, phone, date_of_birth, gender, class_id, date_registered } = req.body;
+  const {
+    student_id,
+    first_name,
+    last_name,
+    email,
+    phone,
+    date_of_birth,
+    gender,
+    class_id,
+    date_registered,
+  } = req.body;
 
   if (!validateStudentId(student_id, req, res)) return;
   if (!validateName(first_name, res, "First Name")) return;
@@ -72,17 +82,26 @@ function validateStudentId(studentId, req, res) {
 function validateName(name, res, fieldName) {
   const nameRegex = /^[A-Za-z]{3,50}$/;
   if (name === undefined || name === null) {
-    res.status(400).send({ success: false, message: `${fieldName} is required` });
+    res
+      .status(400)
+      .send({ success: false, message: `${fieldName} is required` });
     return false;
   }
 
   if (name.trim() === "") {
-    res.status(400).send({ success: false, message: `${fieldName} cannot be empty` });
+    res
+      .status(400)
+      .send({ success: false, message: `${fieldName} cannot be empty` });
     return false;
   }
 
   if (!nameRegex.test(name)) {
-    res.status(400).send({ success: false, message: `${fieldName} must be between 3 and 50 characters` })
+    res
+      .status(400)
+      .send({
+        success: false,
+        message: `${fieldName} must be between 3 and 50 characters`,
+      });
     return false;
   }
   return true;
@@ -101,17 +120,26 @@ function validateEmail(email, res) {
 function validatePhone(phone, res) {
   const phoneRegex = /^0(70|80|81|90|91)\d{8}$/;
   if (phone === undefined || phone === null) {
-    res.status(400).send({ success: false, message: "Phone number is required" });
+    res
+      .status(400)
+      .send({ success: false, message: "Phone number is required" });
     return false;
   }
 
   if (phone === "") {
-    res.status(400).send({ success: false, message: "Phone number cannot be empty" });
+    res
+      .status(400)
+      .send({ success: false, message: "Phone number cannot be empty" });
     return false;
   }
 
   if (!phoneRegex.test(phone)) {
-    res.status(400).send({ success: false, message: "Enter a valid nigerian phone number (e.g. 080****7334)" });
+    res
+      .status(400)
+      .send({
+        success: false,
+        message: "Enter a valid nigerian phone number (e.g. 080****7334)",
+      });
     return false;
   }
   return true;
@@ -190,8 +218,13 @@ function validateGender(gender, res) {
     return false;
   }
 
-  if (!allowedGender.includes(gender)) { 
-    res.status(400).send({ success: false, message: `Invalid gender value provided. Allowed gender: ${allowedGender.join(",")}` });
+  if (!allowedGender.includes(gender)) {
+    res
+      .status(400)
+      .send({
+        success: false,
+        message: `Invalid gender value provided. Allowed gender: ${allowedGender.join(",")}`,
+      });
     return false;
   }
   return true;
@@ -204,20 +237,26 @@ function validateClassId(classId, res) {
   }
 
   if (classId === "") {
-    res.status(400).send({ success: false, message: "Class ID cannot be empty" });
+    res
+      .status(400)
+      .send({ success: false, message: "Class ID cannot be empty" });
     return false;
   }
 
   const numberClassId = Number(classId);
 
   if (!Number.isInteger(numberClassId)) {
-    res.status(400).send({ success: false, message: "Class ID must be an integer" });
+    res
+      .status(400)
+      .send({ success: false, message: "Class ID must be an integer" });
     return false;
   }
 
   if (classId < 1 || classId >= 7) {
-    res.status(400).send({ success: false, message: "Class ID must be between 1 and 6" });
-    return false
+    res
+      .status(400)
+      .send({ success: false, message: "Class ID must be between 1 and 6" });
+    return false;
   }
   return true;
 }
@@ -240,9 +279,13 @@ function validateDateRegistered(dateRegistered, req, res) {
       return false;
     }
 
-    const registeredDate = new Date(dateRegistered);
+    const registeredDate = new Date(`${dateRegistered}T00:00:00Z`);
 
-    if (Number.isNaN(registeredDate.getTime())) {
+    if (
+      !/^\d{4}-\d{2}-\d{2}$/.test(dateRegistered) ||
+      Number.isNaN(registeredDate.getTime()) ||
+      registeredDate.toISOString().slice(0, 10) !== dateRegistered
+    ) {
       res.status(400).send({
         success: false,
         message: "Enter a valid registration date",
@@ -250,9 +293,14 @@ function validateDateRegistered(dateRegistered, req, res) {
       return false;
     }
 
-    const today = new Date();
+    const today = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Africa/Lagos",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(new Date());
 
-    if (registeredDate > today) {
+    if (dateRegistered > today) {
       res.status(400).send({
         success: false,
         message: "Registration date cannot be in the future",
@@ -262,6 +310,7 @@ function validateDateRegistered(dateRegistered, req, res) {
 
     return true;
   }
+
   return true;
 }
 
