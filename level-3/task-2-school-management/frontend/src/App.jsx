@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Students } from "./components/Students";
+import { Students } from "./pages/Students";
 import { Home } from "./components/Home";
 import { DashboardLayout } from "./layouts/DashboardLayout";
 

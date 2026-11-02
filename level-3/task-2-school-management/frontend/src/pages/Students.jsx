@@ -1,9 +1,9 @@
 import { Mail, PhoneIcon, PlusIcon } from "lucide-react";
-import styles from "../components/Students.module.css";
+import styles from "./Students.module.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getStudents } from "../services/schoolService";
-import { Loading } from "./Loading";
+import { Loading } from "../components/Loading";
 
 export function Students() {
   const [searchStudent, setSearchStudent] = useState("");
@@ -52,7 +52,10 @@ export function Students() {
     const studentClass = transformWord(student.name);
     const fullName = `${firstName} ${lastName}`;
 
-    if (fullName.toLowerCase().includes(searchStudent.toLowerCase()) && (studentClass === filter || filter === "")) {
+    if (
+      fullName.toLowerCase().includes(searchStudent.toLowerCase()) &&
+      (studentClass === filter || filter === "")
+    ) {
       return true;
     }
   });
