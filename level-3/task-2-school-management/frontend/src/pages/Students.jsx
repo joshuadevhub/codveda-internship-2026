@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getStudents } from "../services/schoolService";
 import { Loading } from "../components/Loading";
+import { AddStudentModal } from "../components/students/AddStudentModal";
 
 export function Students() {
   const [searchStudent, setSearchStudent] = useState("");
@@ -11,6 +12,7 @@ export function Students() {
   const [filter, setFilter] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     async function fetchStudents() {
@@ -67,6 +69,14 @@ export function Students() {
     return joinedName;
   }
 
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  }
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  }
+
   return (
     <>
       <section className={styles.studentHeader}>
@@ -75,10 +85,10 @@ export function Students() {
       </section>
 
       <section className={styles.addStudent}>
-        <div>
+        <button onClick={handleOpenModal} type="button">
           <PlusIcon />
-          <p>Add Students</p>
-        </div>
+          <p className={styles.studentLink}>Add Student</p>
+        </button>
       </section>
 
       <section className={styles.studentContainer}>
@@ -166,6 +176,8 @@ export function Students() {
           )}
         </section>
       </section>
+
+      <AddStudentModal modal={openModal} closeModal={handleCloseModal}/>
     </>
   );
 }

@@ -35,8 +35,7 @@ export function StudentForm() {
     if (fieldName === null || fieldName === "first_name") {
       if (!data.first_name.trim()) {
         newErrors.first_name = "First name is required";
-      }
-      if (data.first_name.length < 3) {
+      }else if(data.first_name.length < 3) {
         newErrors.first_name = "First name should contain at least 3 characters";
       }
     }
@@ -44,8 +43,7 @@ export function StudentForm() {
     if (fieldName === null || fieldName === "last_name") {
       if (!data.last_name.trim()) {
         newErrors.last_name = "Last name is required";
-      }
-      if (data.last_name.length < 3) {
+      }else if (data.last_name.length < 3) {
         newErrors.last_name = "Last name should contain at least 3 characters";
       }
     }
@@ -86,7 +84,7 @@ export function StudentForm() {
         newErrors.gender = "Please select a gender";
       } else if (
         !allowedGenders.some(
-          (gender) => gender.toLowerCase() === data.gender.toLowerCase(),
+          (gender) => gender === data.gender,
         )
       ) {
         newErrors.gender = "Please select a valid gender";
@@ -149,6 +147,7 @@ export function StudentForm() {
             value={formData.first_name}
             onChange={handleChange}
             onBlur={handleBlur}
+            id="first-name"
           />
           {error ? (
             <p className={styles.errorMessage}>{error.first_name}</p>
@@ -168,6 +167,7 @@ export function StudentForm() {
             value={formData.last_name}
             onChange={handleChange}
             onBlur={handleBlur}
+            id="last-name"
           />
           {error ? (
             <p className={styles.errorMessage}>{error.last_name}</p>
@@ -185,6 +185,7 @@ export function StudentForm() {
             value={formData.email}
             onChange={handleChange}
             onBlur={handleBlur}
+            id="email"
           />
           {error ? (
             <p className={styles.errorMessage}>{error.email}</p>
@@ -204,6 +205,7 @@ export function StudentForm() {
             value={formData.phone}
             onChange={handleChange}
             onBlur={handleBlur}
+            id="phone"
           />
           {error ? (
             <p className={styles.errorMessage}>{error.phone}</p>
@@ -222,6 +224,7 @@ export function StudentForm() {
             value={formData.date_of_birth}
             onChange={handleChange}
             onBlur={handleBlur}
+            id="date-of-birth"
           />
           {error ? (
             <p className={styles.errorMessage}>{error.date_of_birth}</p>
@@ -231,13 +234,13 @@ export function StudentForm() {
         </div>
 
         <div className={styles.formControl}>
-          <label>
+          <label htmlFor="gender">
             Gender <span>*</span>
           </label>
-          <select name="gender" value={formData.gender} onChange={handleChange} onBlur={handleBlur}>
+          <select name="gender" value={formData.gender} onChange={handleChange} onBlur={handleBlur} id="gender">
             <option value="">Select your Gender</option>
             {allowedGenders.map((gender) => (
-              <option value={gender.toLowerCase()} key={gender.toLowerCase()}>
+              <option value={gender} key={gender.toLowerCase()}>
                 {gender}
               </option>
             ))}
@@ -253,7 +256,7 @@ export function StudentForm() {
           <label htmlFor="class">
             Class <span>*</span>
           </label>
-          <select name="class" value={formData.class} onChange={handleChange} onBlur={handleBlur}>
+          <select name="class" value={formData.class} onChange={handleChange} onBlur={handleBlur} id="class">
             <option value="">Select your Class</option>
             {allowedClasses.map((classes) => (
               <option value={classes.value} key={classes.value}>

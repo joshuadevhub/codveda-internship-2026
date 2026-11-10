@@ -4,7 +4,8 @@
 .addStudent {
   margin-top: 1rem;
 }
-.addStudent > div {
+.addStudent > button {
+  width: 100%;
   display: flex;
   background-color: var(--primary-color);
   border: none;
@@ -13,10 +14,14 @@
   border-radius: 0.6rem;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: bold;
   color: var(--white-color);
   gap: 0.4rem;
+  transition: background 0.8s ease-in-out;
+}
+.addStudent > button:hover{
+  background: var(--secondary-color);
 }
 .studentContainer {
   margin-top: 2rem;

@@ -1,24 +1,62 @@
 .modalContainer{
   position: fixed;
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(21, 90, 156, 0.85);
   backdrop-filter: blur(3px);
   z-index: 1000;
   -webkit-backdrop-filter: blur(3px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 1rem;
+  display: none;
+  animation: slideUp 1.5s ease-in-out;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
-.modalContainer > .form{
+.modalContainer.show{
+  display: block;
+}
+.modalHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+
+  h2{
+    color: #ecfdf5;
+  }
+  .closeButton{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    
+    .closeIcon{
+      color: #cbd5e1;
+    }
+  }
+}
+.instruction{
+  font-size: 0.8rem;
+}
+
+@keyframes slideUp{
+  from{
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.modalContainer > .formContainer{
   background-color: var(--white-color);
   width: 100%;
   padding: 1rem;
   border-radius: 0.6rem;
   z-index: 1001;
+  margin: 1rem 0;
 }
 
 .formContent .formControl{
